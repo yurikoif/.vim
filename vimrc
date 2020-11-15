@@ -12,6 +12,7 @@ Plug 'sainnhe/edge'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
