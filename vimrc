@@ -1,9 +1,6 @@
-" EMACS style VI/VIM environment
-
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/syntastic'
-Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
 Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
@@ -13,9 +10,12 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1 " lsp show error message
+let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 
 sy enable
 filetype on
@@ -35,7 +35,6 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set tags=~/tags
 set autochdir
 set browsedir=current " Make the file browser always open the current directory.
 set wildmenu
