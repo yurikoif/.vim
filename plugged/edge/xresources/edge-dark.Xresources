@@ -3,15 +3,15 @@
 ! URL:        https://github.com/sainnhe/edge/
 ! License:    MIT && Anti-996
 
-#define white #bcc4d1
-#define black #2b2d3a
+#define white #c5cdd9
+#define black #2c2e34
 #define grey #88909f
-#define red #f27a7a
-#define green #a1c286
-#define cyan #70bab9
-#define yellow #d9b575
-#define blue #75b6e8
-#define magenta #d798e9
+#define red #ec7279
+#define green #a0c980
+#define cyan #5dbbc1
+#define yellow #deb974
+#define blue #6cb6eb
+#define magenta #d38aea
 
 *.foreground:   white
 *.background:   black
@@ -19,7 +19,7 @@
 *fading: 35
 *fadeColor: grey
 
-*.color0: grey
+*.color0: black
 *.color1: red
 *.color2: green
 *.color3: yellow
@@ -27,7 +27,7 @@
 *.color5: magenta
 *.color6: cyan
 *.color7: white
-*.color8: grey
+*.color8: black
 *.color9: red
 *.color10: green
 *.color11: yellow
