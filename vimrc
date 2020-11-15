@@ -6,10 +6,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sainnhe/edge'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'mattn/vim-lsp-settings'
 Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
@@ -24,7 +20,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:lsp_diagnostics_echo_cursor = 1 " lsp show error message
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 
 sy enable
