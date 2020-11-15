@@ -9,6 +9,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sainnhe/edge'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -43,15 +46,6 @@ au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop
 
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
-
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-imap <silent> <A-Up> <ESC>:wincmd k<CR>i
-imap <silent> <A-Down> <ESC>:wincmd j<CR>i
-imap <silent> <A-Left> <ESC>:wincmd h<CR>i
-imap <silent> <A-Right> <ESC>:wincmd l<CR>i
 
 vmap <C-Left> b
 nmap <C-Left> b
