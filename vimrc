@@ -1,8 +1,6 @@
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
-Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sainnhe/edge'
@@ -11,16 +9,6 @@ Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
-
-" syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 
 sy enable
@@ -71,3 +59,52 @@ imap <PageUp> <ESC><C-u>i
 vmap <PageDown> <C-d>
 nmap <PageDown> <C-d>
 imap <PageDown> <ESC><C-d>i
+
+let g:gutentags_ctags_exclude = [
+            \ '*/.ccls-cache/*', '*/Debug/*',
+            \ '*.git', '*.svg', '*.hg',
+            \ '*/tests/*',
+            \ 'build',
+            \ 'dist',
+            \ '*sites/*/files/*',
+            \ 'bin',
+            \ 'node_modules',
+            \ 'bower_components',
+            \ 'cache',
+            \ 'compiled',
+            \ 'docs',
+            \ 'example',
+            \ 'bundle',
+            \ 'vendor',
+            \ '*.md',
+            \ '*-lock.json',
+            \ '*.lock',
+            \ '*bundle*.js',
+            \ '*build*.js',
+            \ '.*rc*',
+            \ '*.json',
+            \ '*.min.*',
+            \ '*.map',
+            \ '*.bak',
+            \ '*.zip',
+            \ '*.pyc',
+            \ '*.class',
+            \ '*.sln',
+            \ '*.Master',
+            \ '*.csproj',
+            \ '*.tmp',
+            \ '*.csproj.user',
+            \ '*.cache',
+            \ '*.pdb',
+            \ 'tags*',
+            \ 'cscope.*',
+            \ '*.css',
+            \ '*.less',
+            \ '*.scss',
+            \ '*.exe', '*.dll',
+            \ '*.mp3', '*.ogg', '*.flac',
+            \ '*.swp', '*.swo',
+            \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+            \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+            \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+            \ ]
