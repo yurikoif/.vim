@@ -3,7 +3,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'godlygeek/tabular'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
-Plug 'sainnhe/edge'
+Plug 'jacoborus/tender.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -16,7 +16,7 @@ let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 sy enable
 filetype on
 set background=dark
-color edge
+color tender
 hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
 hi Type cterm=bold
