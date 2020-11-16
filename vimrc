@@ -5,7 +5,6 @@ Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sainnhe/edge'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
