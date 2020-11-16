@@ -6,6 +6,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sainnhe/edge'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -59,6 +61,16 @@ imap <PageUp> <ESC><C-u>i
 vmap <PageDown> <C-d>
 nmap <PageDown> <C-d>
 imap <PageDown> <ESC><C-d>i
+
+nmap <C-o> :GFiles<CR>
+imap <C-o> <ESC>:GFiles<CR>
+vmap <C-o> <ESC>:GFiles<CR>
+nmap <F12> :Buffers<CR>
+imap <F12> <ESC>:Buffers<CR>
+vmap <F12> <ESC>:Buffers<CR>
+nmap <C-f> :Lines<CR>
+imap <C-f> <ESC>:Lines<CR>
+vmap <C-f> <ESC>:Lines<CR>
 
 let g:gutentags_ctags_exclude = [
             \ '*/.ccls-cache/*', '*/Debug/*',

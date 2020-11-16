@@ -1,4 +1,5 @@
+bundle/
+ctags/
 plugged/
 view/
-ctags/
 .netrwhist
