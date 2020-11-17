@@ -43,9 +43,6 @@ au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 
-nmap <C-s> :update<CR>
-imap <C-s> <ESC>:update<CR><ESC>a
-
 nmap <C-x><Left> :bp<CR>
 imap <C-x><left> <ESC>:bp<CR>i
 nmap <C-x><Right> :bn<CR>
