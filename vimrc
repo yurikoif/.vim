@@ -1,8 +1,8 @@
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'godlygeek/tabular'
-Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'jacoborus/tender.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
@@ -12,6 +12,8 @@ call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#minimum_prefix_length = 2
 
 sy enable
 filetype on
