@@ -15,7 +15,6 @@ let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 
 sy enable
 filetype on
-set background=dark
 color tender
 hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
