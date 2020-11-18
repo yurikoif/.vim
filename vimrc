@@ -36,6 +36,7 @@ set autochdir
 set browsedir=current " Make the file browser always open the current directory.
 set wildmenu
 set wildmode=longest:full
+set completeopt=longest,menuone
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
@@ -76,6 +77,9 @@ vmap <PageDown> <C-d>
 nmap <PageDown> <C-d>
 imap <PageDown> <ESC><C-d>i
 
+nmap <C-s> :update<CR>
+imap <C-s> <ESC>:update<CR>
+vmap <C-s> <ESC>:update<CR>
 nmap <C-o> :GFiles<CR>
 imap <C-o> <ESC>:GFiles<CR>
 vmap <C-o> <ESC>:GFiles<CR>
