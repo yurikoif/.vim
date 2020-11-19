@@ -8,6 +8,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'will133/vim-dirdiff'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
