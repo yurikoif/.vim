@@ -15,6 +15,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:mucomplete#enable_auto_at_startup = 1
 let g:mucomplete#minimum_prefix_length = 2
+let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git*,.*cache"
 
 sy enable
 filetype on
