@@ -10,6 +10,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'will133/vim-dirdiff'
 Plug 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -45,6 +46,7 @@ set completeopt=longest,menuone
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
 au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
 
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
