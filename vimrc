@@ -9,6 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'will133/vim-dirdiff'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
