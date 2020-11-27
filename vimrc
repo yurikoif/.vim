@@ -10,12 +10,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'will133/vim-dirdiff'
 Plug 'rhysd/vim-clang-format'
 Plug 'kana/vim-operator-user'
+Plug 'ervandew/supertab'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git*,.*cache"
-let g:clang_format#code_style = "mozilla"
+let g:clang_format#code_style = "chromium"
 
 sy enable
 filetype on
@@ -47,6 +48,9 @@ au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
 
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
+
+nmap <CR> o<ESC>
+nmap <S-CR> O<ESC>
 
 nmap <C-x><Left> :bp<CR>
 imap <C-x><left> <ESC>:bp<CR>i
@@ -96,6 +100,8 @@ vmap <C-f> <ESC>:Lines<CR>
 let g:clang_format#style_options = {
             \ "DerivePointerAlignment" : "false",
             \ "PointerAlignment" : "Right",
+            \ "IndentWidth" : 2,
+            \ "ContinuationIndentWidth" : 2,
             \ }
 
 let g:gutentags_ctags_exclude = [
