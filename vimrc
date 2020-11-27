@@ -2,7 +2,6 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
-Plug 'lifepillar/vim-mucomplete'
 Plug 'jacoborus/tender.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
@@ -15,10 +14,8 @@ call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
-let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#minimum_prefix_length = 2
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git*,.*cache"
-let g:clang_format#code_style = "chromium"
+let g:clang_format#code_style = "mozilla"
 
 sy enable
 filetype on
@@ -95,6 +92,11 @@ vmap <F12> <ESC>:Buffers<CR>
 nmap <C-f> :Lines<CR>
 imap <C-f> <ESC>:Lines<CR>
 vmap <C-f> <ESC>:Lines<CR>
+
+let g:clang_format#style_options = {
+            \ "DerivePointerAlignment" : "false",
+            \ "PointerAlignment" : "Right",
+            \ }
 
 let g:gutentags_ctags_exclude = [
             \ '*/.ccls-cache/*', '*/Debug/*',
