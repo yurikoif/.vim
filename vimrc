@@ -102,6 +102,7 @@ let g:clang_format#style_options = {
             \ "PointerAlignment" : "Right",
             \ "IndentWidth" : 2,
             \ "ContinuationIndentWidth" : 2,
+            \ "ReflowComments" : "false",
             \ }
 
 let g:gutentags_ctags_exclude = [
