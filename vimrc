@@ -48,6 +48,7 @@ au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop
 au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
 au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
 
+nmap <BS> X
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 
