@@ -11,6 +11,7 @@ Plug 'will133/vim-dirdiff'
 Plug 'rhysd/vim-clang-format'
 Plug 'kana/vim-operator-user'
 Plug 'ervandew/supertab'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
