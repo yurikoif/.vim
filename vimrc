@@ -46,6 +46,7 @@ au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
 au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
+au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
 
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
