@@ -2,7 +2,6 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
-Plug 'jacoborus/tender.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -21,7 +20,7 @@ let g:clang_format#code_style = "chromium"
 
 sy enable
 filetype on
-color tender
+color default
 hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
 hi Type cterm=bold
