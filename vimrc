@@ -105,6 +105,7 @@ let g:clang_format#style_options = {
             \ "IndentWidth" : 2,
             \ "ContinuationIndentWidth" : 2,
             \ "ReflowComments" : "false",
+            \ "Standard" : "Latest",
             \ }
 
 let g:gutentags_ctags_exclude = [
