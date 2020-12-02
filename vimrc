@@ -26,7 +26,7 @@ hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
 hi Type cterm=bold
 
-set nocompatible 
+set nocompatible
 set hlsearch
 set number
 set cursorline
@@ -47,6 +47,8 @@ au BufWinEnter *.* silent loadview
 au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
 au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
+
+command DeleteTrailingWhitespace %s/\s\+$//e
 
 nmap <BS> X
 vmap <BS> "_d<ESC>
