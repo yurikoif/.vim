@@ -20,7 +20,7 @@ let g:clang_format#code_style = "chromium"
 
 sy enable
 filetype on
-color default
+color koehler
 hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
 hi Type cterm=bold
