@@ -36,7 +36,6 @@ set cindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set autochdir
 set wildmenu
 set wildmode=longest:full
 set completeopt=longest,menuone
