@@ -11,12 +11,14 @@ Plug 'rhysd/vim-clang-format'
 Plug 'kana/vim-operator-user'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git*,.*cache"
 let g:clang_format#code_style = "chromium"
+let g:plug_window = 'noautocmd vertical topleft new'
 
 sy enable
 filetype on
