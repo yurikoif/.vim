@@ -17,7 +17,7 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git*,.*cache"
-let g:clang_format#code_style = "chromium"
+let g:clang_format#code_style = "mozilla"
 let g:plug_window = 'noautocmd vertical topleft new'
 
 sy enable
@@ -102,10 +102,6 @@ vmap <C-f> <ESC>:Lines<CR>
 let g:clang_format#style_options = {
             \ "DerivePointerAlignment" : "false",
             \ "PointerAlignment" : "Right",
-            \ "IndentWidth" : 2,
-            \ "ContinuationIndentWidth" : 2,
-            \ "ReflowComments" : "false",
-            \ "Standard" : "Latest",
             \ }
 
 let g:gutentags_ctags_exclude = [
