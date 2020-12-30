@@ -50,7 +50,7 @@ au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
 
 command DeleteTrailingWhitespace %s/\s\+$//e
 
-nmap <BS> X
+" nmap <BS> X
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 
