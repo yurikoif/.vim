@@ -1,16 +1,16 @@
 call plug#begin()
-Plug 'vim-airline/vim-airline'
+Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'rhysd/vim-clang-format'
 Plug 'kana/vim-operator-user'
-Plug 'ervandew/supertab'
-Plug 'tpope/vim-commentary'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'rhysd/vim-clang-format'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
