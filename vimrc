@@ -16,7 +16,6 @@ call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
-let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git*,.*cache"
 let g:clang_format#code_style = "mozilla"
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
