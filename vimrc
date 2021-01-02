@@ -51,12 +51,12 @@ au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
 
 command DeleteTrailingWhitespace %s/\s\+$//e
 
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
 " nmap <BS> X
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
-
-nmap <CR> o<ESC>
-nmap <S-CR> O<ESC>
 
 nmap <C-x><Left> :bp<CR>
 imap <C-x><left> <ESC>:bp<CR>i
