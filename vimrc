@@ -14,6 +14,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
+" gc: comment operator
+" gs: grep operator
+
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:clang_format#code_style = "mozilla"
@@ -57,6 +60,7 @@ xmap gs <plug>(GrepperOperator)
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 
+nmap <C-x>t <ESC>:NERDTreeFocus<CR>
 nmap <C-x><Left> :bp<CR>
 imap <C-x><left> <ESC>:bp<CR>i
 nmap <C-x><Right> :bn<CR>
