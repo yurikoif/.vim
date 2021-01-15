@@ -1,5 +1,4 @@
 call plug#begin()
-Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
@@ -9,6 +8,7 @@ Plug 'kana/vim-operator-user'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'last-py2-support' }
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
