@@ -1,4 +1,5 @@
 call plug#begin()
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
