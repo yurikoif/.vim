@@ -103,7 +103,7 @@ vmap <C-f> <ESC>:Lines<CR>
 
 let mapleader = " "
 nmap <silent> <leader>b :Buffers<cr>
-nmap <silent> <leader>s :FSHere<cr>
+nmap <silent> <leader>fs :FSHere<cr>
 
 let g:clang_format#style_options = {
             \ "DerivePointerAlignment" : "false",
