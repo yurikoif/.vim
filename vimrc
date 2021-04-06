@@ -1,4 +1,5 @@
 call plug#begin()
+Plug 'derekwyatt/vim-fswitch'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
@@ -96,12 +97,13 @@ imap <PageDown> <ESC><C-d>i
 nmap <C-o> :GFiles<CR>
 imap <C-o> <ESC>:GFiles<CR>
 vmap <C-o> <ESC>:GFiles<CR>
-nmap <F12> :Buffers<CR>
-imap <F12> <ESC>:Buffers<CR>
-vmap <F12> <ESC>:Buffers<CR>
 nmap <C-f> :Lines<CR>
 imap <C-f> <ESC>:Lines<CR>
 vmap <C-f> <ESC>:Lines<CR>
+
+let mapleader = " "
+nmap <silent> <leader>b :Buffers<cr>
+nmap <silent> <leader>s :FSHere<cr>
 
 let g:clang_format#style_options = {
             \ "DerivePointerAlignment" : "false",
