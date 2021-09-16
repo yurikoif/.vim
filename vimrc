@@ -45,6 +45,7 @@ set softtabstop=4
 set wildmenu
 set wildmode=longest:full
 set completeopt=longest,menuone
+set autochdir
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
