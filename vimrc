@@ -21,6 +21,7 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:clang_format#code_style = "mozilla"
+let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
 
@@ -50,7 +51,9 @@ set autochdir
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
 au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
+if executable(g:clang_format#command)
+    au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
+endif
 au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
 
 command DeleteTrailingWhitespace %s/\s\+$//e
