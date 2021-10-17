@@ -18,6 +18,9 @@ call plug#end()
 
 " gc: comment operator
 " gs: grep operator
+" cs: parentheses change operator
+" ds: parentheses deletion operator
+" ys: parentheses insertion operator
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
