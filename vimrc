@@ -203,4 +203,4 @@ fu! RestoreSess()
 endfunction
 
 au VimLeave * call SaveSess()
-au VimEnter * nested call RestoreSess()
+au VimEnter * nested if argc() == 0 | call RestoreSess() | endif
