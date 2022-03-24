@@ -169,21 +169,25 @@ let g:gutentags_ctags_exclude = [
             \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
             \ ]
 
+
 fu! SaveSess()
-    execute 'mksession! ' . getcwd() . '/.session.vim'
+    let home_dir = fnamemodify('~', ':p')
+    execute '!mkdir -p ' . home_dir . '.vim/sessions'
+    execute 'mksession! ' . home_dir . '.vim/sessions/.session.vim'
 endfunction
 
 fu! RestoreSess()
-if filereadable(getcwd() . '/.session.vim')
-    execute 'so ' . getcwd() . '/.session.vim'
-    if bufexists(1)
-        for l in range(1, bufnr('$'))
-            if bufwinnr(l) == -1
-                exec 'sbuffer ' . l
-            endif
-        endfor
+    let home_dir = fnamemodify('~', ':p')
+    if filereadable(home_dir . '/.vim/sessions/.session.vim')
+        execute 'so ' . home_dir . '/.vim/sessions/.session.vim'
+        if bufexists(1)
+            for l in range(1, bufnr('$'))
+                if bufwinnr(l) == -1
+                    exec 'sbuffer ' . l
+                endif
+            endfor
+        endif
     endif
-endif
 endfunction
 
 autocmd VimLeave * call SaveSess()
