@@ -4,3 +4,4 @@ plugged/
 view/
 .netrwhist
 .fzf-history
+.session.vim
