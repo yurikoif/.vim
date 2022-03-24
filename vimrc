@@ -171,15 +171,16 @@ let g:gutentags_ctags_exclude = [
 
 
 fu! SaveSess()
-    let home_dir = fnamemodify('~', ':p')
-    execute '!mkdir -p ' . home_dir . '.vim/sessions'
-    execute 'mksession! ' . home_dir . '.vim/sessions/.session.vim'
+    let home_dir = expand('<sfile>:p:h')
+    echo home_dir
+    execute '!mkdir -p ' . home_dir . '/sessions'
+    execute 'mksession! ' . home_dir . '/sessions/.session.vim'
 endfunction
 
 fu! RestoreSess()
-    let home_dir = fnamemodify('~', ':p')
-    if filereadable(home_dir . '/.vim/sessions/.session.vim')
-        execute 'so ' . home_dir . '/.vim/sessions/.session.vim'
+    let home_dir = expand('<sfile>:p:h')
+    if filereadable(home_dir . '/sessions/.session.vim')
+        execute 'so ' . home_dir . '/sessions/.session.vim'
         if bufexists(1)
             for l in range(1, bufnr('$'))
                 if bufwinnr(l) == -1
@@ -190,5 +191,5 @@ fu! RestoreSess()
     endif
 endfunction
 
-autocmd VimLeave * call SaveSess()
-autocmd VimEnter * nested call RestoreSess()
+au VimLeave * call SaveSess()
+au VimEnter * nested call RestoreSess()
