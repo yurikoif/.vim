@@ -192,13 +192,13 @@ fu! RestoreSess()
     let path_sess = PathSess()
     if filereadable(path_sess)
         execute 'so ' . path_sess
-        if bufexists(1)
-            for l in range(1, bufnr('$'))
-                if bufwinnr(l) == -1
-                    exec 'sbuffer ' . l
-                endif
-            endfor
-        endif
+        " if bufexists(1)
+        "     for l in range(1, bufnr('$'))
+        "         if bufwinnr(l) == -1
+        "             exec 'sbuffer ' . l
+        "         endif
+        "     endfor
+        " endif
     endif
 endfunction
 
