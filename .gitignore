@@ -1,6 +1,7 @@
 bundle/
 ctags/
 plugged/
+sessions/
 view/
 .netrwhist
 .fzf-history
