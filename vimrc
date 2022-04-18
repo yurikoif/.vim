@@ -33,7 +33,7 @@ let g:fzf_history_dir = '~/.vim/.fzf-history'
 
 sy enable
 filetype on
-color evening
+color koehler
 hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
 hi Type cterm=bold
