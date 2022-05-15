@@ -118,7 +118,7 @@ nmap <silent> <leader>fs :FSHere<cr>
 let g:clang_format#style_options = {
             \ "AlwaysBreakAfterDefinitionReturnType" : "None",
             \ "AlwaysBreakAfterReturnType" : "None",
-            \ "ColumnLimit" : 100,
+            \ "ColumnLimit" : 110,
             \ "DerivePointerAlignment" : "false",
             \ "PointerAlignment" : "Right",
             \ }
