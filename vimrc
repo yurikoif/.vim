@@ -107,9 +107,15 @@ imap <PageDown> <ESC><C-d>i
 nmap <C-o> :GFiles<CR>
 imap <C-o> <ESC>:GFiles<CR>
 vmap <C-o> <ESC>:GFiles<CR>
-nmap <C-f> :Lines<CR>
-imap <C-f> <ESC>:Lines<CR>
-vmap <C-f> <ESC>:Lines<CR>
+if executable('rg')
+    nmap <C-f> :Rg<CR>
+    imap <C-f> <ESC>:Rg<CR>
+    vmap <C-f> <ESC>:Rg<CR>
+else
+    nmap <C-f> :Lines<CR>
+    imap <C-f> <ESC>:Lines<CR>
+    vmap <C-f> <ESC>:Lines<CR>
+endif
 
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<cr>
