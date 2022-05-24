@@ -15,6 +15,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " gc: comment operator
@@ -30,6 +31,7 @@ let g:clang_format#code_style = "mozilla"
 let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
+let g:vimwiki_list = [{'path': '~/.vim/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 sy enable
 filetype on
