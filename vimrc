@@ -1,5 +1,4 @@
 call plug#begin()
-Plug 'derekwyatt/vim-fswitch'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
