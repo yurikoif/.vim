@@ -6,6 +6,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-operator-user'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'mechatroner/rainbow_csv'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'rhysd/vim-clang-format'
@@ -60,6 +61,10 @@ if executable(g:clang_format#command)
     au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
 endif
 au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
+if exists(':RainbowAlign')
+    au FileType csv nnoremap <buffer> <C-a> :RainbowAlign<CR>
+    au FileType csv vnoremap <buffer> <C-a> :RainbowAlign<CR>
+endif
 
 command DeleteTrailingWhitespace %s/\s\+$//e
 
