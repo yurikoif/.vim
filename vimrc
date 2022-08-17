@@ -123,6 +123,9 @@ else
     imap <C-f> <ESC>:Lines<CR>
     vmap <C-f> <ESC>:Lines<CR>
 endif
+nmap <C-g> :Grepper<CR>
+imap <C-g> <ESC>:Grepper<CR>
+vmap <C-g> <ESC>:Grepper<CR>
 
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<cr>
