@@ -122,13 +122,11 @@ else
     imap <C-f> <ESC>:Lines<CR>
     vmap <C-f> <ESC>:Lines<CR>
 endif
-nmap <C-g> :Grepper<CR>
-imap <C-g> <ESC>:Grepper<CR>
-vmap <C-g> <ESC>:Grepper<CR>
 
 let mapleader = " "
-nmap <silent> <leader><TAB> :Buffers<cr>
-nmap <silent> <leader>tree :NERDTreeFocus<cr>
+nmap <silent> <leader><TAB> :Buffers<CR>
+nmap <silent> <leader>grep :Grepper<CR>
+nmap <silent> <leader>tree :NERDTreeFocus<CR>
 
 let g:clang_format#style_options = {
             \ "AlwaysBreakAfterDefinitionReturnType" : "None",
