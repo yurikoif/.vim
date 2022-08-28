@@ -127,7 +127,7 @@ endif
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<CR>
 nmap <silent> <leader>grep :Grepper<CR>
-nmap <silent> <leader>ls :TagbarToggle<CR>
+nmap <silent> <leader>ls :TagbarOpen f<CR>
 nmap <silent> <leader>tree :NERDTreeFocus<CR>
 
 let g:clang_format#style_options = {
