@@ -5,6 +5,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-operator-user'
+Plug 'preservim/tagbar' " switch to LSP based vista.vim & coc.nvim when mature
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mechatroner/rainbow_csv'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
@@ -126,6 +127,7 @@ endif
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<CR>
 nmap <silent> <leader>grep :Grepper<CR>
+nmap <silent> <leader>ls :TagbarToggle<CR>
 nmap <silent> <leader>tree :NERDTreeFocus<CR>
 
 let g:clang_format#style_options = {
