@@ -128,7 +128,7 @@ vmap <C-g> <ESC>:Grepper<CR>
 
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<cr>
-nmap <silent> <leader>t :NERDTreeFocus<cr>
+nmap <silent> <leader>tree :NERDTreeFocus<cr>
 
 let g:clang_format#style_options = {
             \ "AlwaysBreakAfterDefinitionReturnType" : "None",
