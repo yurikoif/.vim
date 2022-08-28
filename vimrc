@@ -75,7 +75,6 @@ xmap gs <plug>(GrepperOperator)
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 
-nmap <C-x>t <ESC>:NERDTreeFocus<CR>
 nmap <C-x><Left> :bp<CR>
 imap <C-x><left> <ESC>:bp<CR>i
 nmap <C-x><Right> :bn<CR>
@@ -129,7 +128,7 @@ vmap <C-g> <ESC>:Grepper<CR>
 
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<cr>
-nmap <silent> <leader>fs :FSHere<cr>
+nmap <silent> <leader>t :NERDTreeFocus<cr>
 
 let g:clang_format#style_options = {
             \ "AlwaysBreakAfterDefinitionReturnType" : "None",
