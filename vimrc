@@ -1,4 +1,9 @@
 call plug#begin()
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
@@ -31,6 +36,7 @@ let g:clang_format#code_style = "mozilla"
 let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
+let g:snipMate = { 'snippet_version' : 1 }
 
 sy enable
 filetype on
