@@ -1,9 +1,9 @@
 call plug#begin()
-Plug 'MarcWeber/vim-addon-mw-utils' # snippet
-Plug 'ervandew/supertab' # complete
-Plug 'garbas/vim-snipmate' # snippet
+Plug 'MarcWeber/vim-addon-mw-utils' " snippet
+Plug 'ervandew/supertab'
+Plug 'garbas/vim-snipmate' " snippet
 Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets' # snippet
+Plug 'honza/vim-snippets' " snippet
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -14,7 +14,7 @@ Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
 Plug 'rhysd/vim-clang-format'
-Plug 'tomtom/tlib_vim' # snippet
+Plug 'tomtom/tlib_vim' " snippet
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
