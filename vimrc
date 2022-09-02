@@ -80,6 +80,7 @@ xmap gs <plug>(GrepperOperator)
 " nmap <BS> X
 vmap <BS> "_d<ESC>
 vmap <DEL> "_d
+set backspace=indent,eol,start
 
 nmap <C-x><Left> :bp<CR>
 imap <C-x><left> <ESC>:bp<CR>i
