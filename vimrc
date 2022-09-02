@@ -11,8 +11,9 @@ Plug 'kana/vim-operator-user'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mechatroner/rainbow_csv'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'preservim/tagbar'
+Plug 'preservim/nerdtree', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
+Plug 'preservim/tagbar', { 'on': 'TagbarOpen' }
 Plug 'rhysd/vim-clang-format'
 Plug 'tomtom/tlib_vim' " snippet
 Plug 'tpope/vim-commentary'
