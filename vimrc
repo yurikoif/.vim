@@ -3,6 +3,12 @@ if 0 && v:version > 802 && executable('node') && system('node --version') > 'v14
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'clangd/coc-clangd'
     Plug 'fannheyward/coc-pyright'
+elseif has('python3') " need: pip3 install --user --upgrade pynvim
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips'
 else
     Plug 'MarcWeber/vim-addon-mw-utils' " snippet
     Plug 'ervandew/supertab'
@@ -43,6 +49,12 @@ let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
 let g:snipMate = { 'snippet_version' : 1 }
+
+" deoplete & ultisnips
+let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+let g:UltiSnipsExpandTrigger="<return>"
 
 sy enable
 filetype on
