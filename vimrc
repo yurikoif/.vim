@@ -1,6 +1,8 @@
 call plug#begin()
 if 0 && v:version > 802 && executable('node') && system('node --version') > 'v14.14'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'clangd/coc-clangd'
+    Plug 'fannheyward/coc-pyright'
 else
     Plug 'MarcWeber/vim-addon-mw-utils' " snippet
     Plug 'ervandew/supertab'
