@@ -3,25 +3,19 @@ if 0 && v:version > 802 && executable('node') && system('node --version') > 'v14
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'clangd/coc-clangd'
     Plug 'fannheyward/coc-pyright'
-elseif 0 && has('python3')
-    Plug 'Shougo/deoplete.nvim', { 'do': 'pip3 install --user --upgrade pynvim' }
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'honza/vim-snippets'
-    Plug 'SirVer/ultisnips'
 elseif 1
     Plug 'prabirshrestha/asyncomplete.vim'
-    " if has('python3')
-    "     Plug 'SirVer/ultisnips'
-    "     Plug 'honza/vim-snippets'
-    "     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    " endif
+    Plug 'prabirshrestha/asyncomplete-tags.vim'
 else
     Plug 'MarcWeber/vim-addon-mw-utils' " snippet
     Plug 'ervandew/supertab'
     Plug 'garbas/vim-snipmate' " snippet
     Plug 'honza/vim-snippets' " snippet
     Plug 'tomtom/tlib_vim' " snippet
+endif
+if has('python3')
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 endif
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
@@ -58,11 +52,17 @@ let g:fzf_history_dir = '~/.vim/.fzf-history'
 let g:snipMate = { 'snippet_version' : 1 }
 
 " tab complete & enter snippet
-let g:deoplete#enable_at_startup = 1
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 let g:UltiSnipsExpandTrigger="<CR>"
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+    \ 'name': 'tags',
+    \ 'allowlist': ['c', 'cpp', 'python'],
+    \ 'completor': function('asyncomplete#sources#tags#completor'),
+    \ 'config': { 'max_file_size': 50000000, },
+    \ }))
 
 sy enable
 filetype on
