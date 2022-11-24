@@ -5,7 +5,9 @@ if 0 && v:version > 802 && executable('node') && system('node --version') > 'v14
     Plug 'fannheyward/coc-pyright'
 elseif 1
     Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-tags.vim'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 else
     Plug 'MarcWeber/vim-addon-mw-utils' " snippet
     Plug 'ervandew/supertab'
@@ -55,11 +57,26 @@ let g:snipMate = { 'snippet_version' : 1 }
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+let g:asyncomplete_min_chars=2
 let g:UltiSnipsExpandTrigger="<CR>"
 
+" register asyncomplete.vim sources
+if has('python3')
+    au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'allowlist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+endif
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': { 'max_buffer_size': 5000000, },
+    \ }))
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
     \ 'name': 'tags',
-    \ 'allowlist': ['c', 'cpp', 'python'],
+    \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
     \ 'config': { 'max_file_size': 50000000, },
     \ }))
