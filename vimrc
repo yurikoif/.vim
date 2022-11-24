@@ -43,7 +43,6 @@ let g:fzf_history_dir = '~/.vim/.fzf-history'
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-let g:asyncomplete_min_chars=2
 let g:UltiSnipsExpandTrigger="<CR>"
 
 sy enable

@@ -1,3 +1,5 @@
+" let g:asyncomplete_min_chars=2
+
 inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
 " register asyncomplete.vim sources
