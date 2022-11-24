@@ -49,47 +49,8 @@ let g:fzf_history_dir = '~/.vim/.fzf-history'
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 let g:asyncomplete_min_chars=2
 let g:UltiSnipsExpandTrigger="<CR>"
-
-" register asyncomplete.vim sources
-if has('python3')
-    au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-        \ 'name': 'ultisnips',
-        \ 'allowlist': ['*'],
-        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-        \ 'priority': 8,
-        \ }))
-endif
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ 'config': { 'max_buffer_size': 5000000, },
-    \ 'priority': 4,
-    \ }))
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-    \ 'name': 'tags',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('asyncomplete#sources#tags#completor'),
-    \ 'config': { 'max_file_size': 50000000, },
-    \ 'priority': 2,
-    \ }))
-
-function! s:sort_by_priority_preprocessor(options, matches) abort
-    let l:priorities = {}
-    for l:source_name in keys(a:matches)
-        let l:priorities[l:source_name] = get(asyncomplete#get_source_info(l:source_name), 'priority', 0)
-    endfor
-    let l:source_names = sort(keys(l:priorities), {a, b -> l:priorities[b] - l:priorities[a]})
-    let l:items = []
-    for l:source_name in l:source_names
-        let l:items += a:matches[l:source_name]['items']
-    endfor
-    call asyncomplete#preprocess_complete(a:options, l:items)
-endfunction
-let g:asyncomplete_preprocessor = [function('s:sort_by_priority_preprocessor')]
 
 sy enable
 filetype on
@@ -136,38 +97,6 @@ vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 set backspace=indent,eol,start
 
-nmap <C-x><Left> :bp<CR>
-imap <C-x><left> <ESC>:bp<CR>i
-nmap <C-x><Right> :bn<CR>
-imap <C-x><Right> <ESC>:bn<CR>i
-nmap <C-x>0 :hide<CR>
-imap <C-x>0 <ESC>:hide<CR>i
-nmap <C-x>1 :only<CR>
-imap <C-x>1 <ESC>:only<CR>i
-nmap <C-x>2 :split<CR>
-imap <C-x>2 <ESC>:split<CR>i
-nmap <C-x>3 :vsplit<CR>
-imap <C-x>3 <ESC>:vsplit<CR>i
-
-vmap <C-Left> b
-nmap <C-Left> b
-imap <C-Left> <ESC>bi
-vmap <C-Right> w
-nmap <C-Right> w
-imap <C-Right> <ESC>lwi
-vmap <C-Up> {
-nmap <C-Up> {
-imap <C-Up> <ESC>{i
-vmap <C-Down> }
-nmap <C-Down> }
-imap <C-Down> <ESC>}i
-vmap <PageUp> <C-u>
-nmap <PageUp> <C-u>
-imap <PageUp> <ESC><C-u>i
-vmap <PageDown> <C-d>
-nmap <PageDown> <C-d>
-imap <PageDown> <ESC><C-d>i
-
 nmap <C-o> :GFiles<CR>
 imap <C-o> <ESC>:GFiles<CR>
 vmap <C-o> <ESC>:GFiles<CR>
@@ -190,95 +119,7 @@ nmap <silent> <leader>grep :Grepper<CR>
 nmap <silent> <leader>ls :TagbarOpen f<CR>
 nmap <silent> <leader>tree :NERDTreeFocus<CR>
 
-let g:clang_format#style_options = {
-            \ "AlwaysBreakAfterDefinitionReturnType" : "None",
-            \ "AlwaysBreakAfterReturnType" : "None",
-            \ "ColumnLimit" : 110,
-            \ "DerivePointerAlignment" : "false",
-            \ "PointerAlignment" : "Right",
-            \ }
-
-let g:gutentags_ctags_exclude = [
-            \ '*/.ccls-cache/*', '*/Debug/*',
-            \ '*.git', '*.svg', '*.hg',
-            \ '*/tests/*',
-            \ 'build',
-            \ 'dist',
-            \ '*sites/*/files/*',
-            \ 'bin',
-            \ 'node_modules',
-            \ 'bower_components',
-            \ 'cache',
-            \ 'compiled',
-            \ 'docs',
-            \ 'example',
-            \ 'bundle',
-            \ 'vendor',
-            \ '*.md',
-            \ '*-lock.json',
-            \ '*.lock',
-            \ '*bundle*.js',
-            \ '*build*.js',
-            \ '.*rc*',
-            \ '*.json',
-            \ '*.min.*',
-            \ '*.map',
-            \ '*.bak',
-            \ '*.zip',
-            \ '*.pyc',
-            \ '*.class',
-            \ '*.sln',
-            \ '*.Master',
-            \ '*.csproj',
-            \ '*.tmp',
-            \ '*.csproj.user',
-            \ '*.cache',
-            \ '*.pdb',
-            \ 'tags*',
-            \ 'cscope.*',
-            \ '*.css',
-            \ '*.less',
-            \ '*.scss',
-            \ '*.exe', '*.dll',
-            \ '*.mp3', '*.ogg', '*.flac',
-            \ '*.swp', '*.swo',
-            \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
-            \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
-            \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
-            \ ]
-
-fu! PathSess()
-    let home_dir = fnamemodify('~', ':p')
-    execute 'silent !mkdir -p ' . home_dir . '.vim/sessions'
-    let git_dir = substitute(system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:'),'\n','','g')
-    " echo git_dir
-    if isdirectory(git_dir)
-        let git_dir_name = substitute(git_dir, '/', '.', 'g')
-        " echo git_dir_name
-        return home_dir . '.vim/sessions/' . git_dir_name . '.vim'
-    else
-        return home_dir . '.vim/sessions/.session.vim'
-    endif
-endfunction
-
-fu! SaveSess()
-    let path_sess = PathSess()
-    execute 'mksession! ' . path_sess
-endfunction
-
-fu! RestoreSess()
-    let path_sess = PathSess()
-    if filereadable(path_sess)
-        execute 'so ' . path_sess
-        " if bufexists(1)
-        "     for l in range(1, bufnr('$'))
-        "         if bufwinnr(l) == -1
-        "             exec 'sbuffer ' . l
-        "         endif
-        "     endfor
-        " endif
-    endif
-endfunction
-
-au VimLeave * call SaveSess()
-au VimEnter * nested if argc() == 0 | call RestoreSess() | endif
+source asyncomplete-conf.vim
+source emacs-buffer-shortcuts-conf.vim
+source session-conf.vim
+source other-options-conf.vim
