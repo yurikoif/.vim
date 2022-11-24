@@ -3,6 +3,11 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
 Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+if executable('clangd') || executable('pyright')
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+endif
 if has('python3')
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -39,6 +44,8 @@ let g:clang_format#code_style = "mozilla"
 let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
 
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
