@@ -13,14 +13,12 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'name': 'buffer',
     \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ 'config': { 'max_buffer_size': 5000000, },
     \ 'priority': 4,
     \ }))
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
     \ 'name': 'tags',
     \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
-    \ 'config': { 'max_file_size': 50000000, },
     \ 'priority': 2,
     \ }))
 
@@ -32,8 +30,13 @@ function! s:sort_by_priority_preprocessor(options, matches) abort
     let l:source_names = sort(keys(l:priorities), {a, b -> l:priorities[b] - l:priorities[a]})
     let l:items = []
     for l:source_name in l:source_names
-        let l:items += a:matches[l:source_name]['items']
+        for l:item in a:matches[l:source_name]['items']
+            if stridx(l:item['word'], a:options['base']) == 0
+                call add(l:items, l:item)
+            endif
+        endfor
     endfor
+
     call asyncomplete#preprocess_complete(a:options, l:items)
 endfunction
 let g:asyncomplete_preprocessor = [function('s:sort_by_priority_preprocessor')]
