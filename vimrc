@@ -119,7 +119,6 @@ nmap <silent> <leader>grep :Grepper<CR>
 nmap <silent> <leader>ls :TagbarOpen f<CR>
 nmap <silent> <leader>tree :NERDTreeFocus<CR>
 
-source asyncomplete-conf.vim
-source emacs-buffer-shortcuts-conf.vim
-source session-conf.vim
-source other-options-conf.vim
+for vimfile in split(globpath('~/.vim', '*.vim'), '\n')
+    execute('source ' . vimfile)
+endfor
