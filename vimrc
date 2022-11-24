@@ -3,8 +3,8 @@ if 0 && v:version > 802 && executable('node') && system('node --version') > 'v14
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'clangd/coc-clangd'
     Plug 'fannheyward/coc-pyright'
-elseif has('python3') " need: pip3 install --user --upgrade pynvim
-    Plug 'Shougo/deoplete.nvim'
+elseif has('python3')
+    Plug 'Shougo/deoplete.nvim', { 'do': 'pip3 install --user --upgrade pynvim' }
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'honza/vim-snippets'
