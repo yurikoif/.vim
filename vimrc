@@ -3,17 +3,11 @@ if 0 && v:version > 802 && executable('node') && system('node --version') > 'v14
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'clangd/coc-clangd'
     Plug 'fannheyward/coc-pyright'
-elseif 1
+else
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-tags.vim'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-else
-    Plug 'MarcWeber/vim-addon-mw-utils' " snippet
-    Plug 'ervandew/supertab'
-    Plug 'garbas/vim-snipmate' " snippet
-    Plug 'honza/vim-snippets' " snippet
-    Plug 'tomtom/tlib_vim' " snippet
 endif
 if has('python3')
     Plug 'SirVer/ultisnips'
@@ -51,7 +45,6 @@ let g:clang_format#code_style = "mozilla"
 let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
-let g:snipMate = { 'snippet_version' : 1 }
 
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -66,6 +59,7 @@ if has('python3')
         \ 'name': 'ultisnips',
         \ 'allowlist': ['*'],
         \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ 'priority': 8,
         \ }))
 endif
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
@@ -73,13 +67,29 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ 'config': { 'max_buffer_size': 5000000, },
+    \ 'priority': 4,
     \ }))
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
     \ 'name': 'tags',
     \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
     \ 'config': { 'max_file_size': 50000000, },
+    \ 'priority': 2,
     \ }))
+
+function! s:sort_by_priority_preprocessor(options, matches) abort
+    let l:priorities = {}
+    for l:source_name in keys(a:matches)
+        let l:priorities[l:source_name] = get(asyncomplete#get_source_info(l:source_name), 'priority', 0)
+    endfor
+    let l:source_names = sort(keys(l:priorities), {a, b -> l:priorities[b] - l:priorities[a]})
+    let l:items = []
+    for l:source_name in l:source_names
+        let l:items += a:matches[l:source_name]['items']
+    endfor
+    call asyncomplete#preprocess_complete(a:options, l:items)
+endfunction
+let g:asyncomplete_preprocessor = [function('s:sort_by_priority_preprocessor')]
 
 sy enable
 filetype on
