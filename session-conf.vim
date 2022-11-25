@@ -1,4 +1,3 @@
-set sessionoptions-=options " keep highlight and background settings
 
 fu! PathSess()
     let home_dir = fnamemodify('~', ':p')

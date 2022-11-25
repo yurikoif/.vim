@@ -74,6 +74,9 @@ set wildmenu
 set wildmode=longest:full
 set completeopt=longest,menuone
 set autochdir
+" keep pwd, highlight, background settings, etc.
+set viewoptions-=options
+set sessionoptions-=options
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
