@@ -21,7 +21,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mechatroner/rainbow_csv', { 'for': 'csv' }
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
 Plug 'preservim/tagbar', { 'on': 'TagbarOpen' }
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-commentary'
