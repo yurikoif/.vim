@@ -36,6 +36,7 @@ call plug#end()
 " ds: parentheses deletion operator
 " ys: parentheses insertion operator
 " yswf: function parentheses insertion operator
+" S: parentheses insertion operator in virsual mode
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
