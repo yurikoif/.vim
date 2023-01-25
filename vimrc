@@ -45,6 +45,7 @@ let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = '~/.vim/.fzf-history'
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
 
 " tab complete & enter snippet
