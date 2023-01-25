@@ -21,7 +21,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mechatroner/rainbow_csv', { 'for': 'csv' }
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
 Plug 'preservim/tagbar', { 'on': 'TagbarOpen' }
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-commentary'
@@ -37,6 +36,7 @@ call plug#end()
 " ds: parentheses deletion operator
 " ys: parentheses insertion operator
 " yswf: function parentheses insertion operator
+" S: parentheses insertion operator in virsual mode
 
 let g:airline#extensions#tabline#enabled = 1
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
