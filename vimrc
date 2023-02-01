@@ -78,6 +78,7 @@ set autochdir
 " keep pwd, highlight, background settings, etc.
 set viewoptions-=options
 set sessionoptions-=options
+set shortmess-=S
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
