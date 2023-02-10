@@ -1,4 +1,4 @@
-" let g:asyncomplete_min_chars=2
+let g:asyncomplete_min_chars=2
 
 inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
@@ -30,11 +30,13 @@ function! s:sort_by_priority_preprocessor(options, matches) abort
         let l:priorities[l:source_name] = get(asyncomplete#get_source_info(l:source_name), 'priority', 0)
     endfor
     let l:source_names = sort(keys(l:priorities), {a, b -> l:priorities[b] - l:priorities[a]})
+    let l:words = {}
     let l:items = []
     for l:source_name in l:source_names
         for l:item in a:matches[l:source_name]['items']
-            if stridx(l:item['word'], a:options['base']) == 0
+            if !has_key(l:words, l:item['word']) && stridx(l:item['word'], a:options['base']) == 0
                 call add(l:items, l:item)
+                let l:words[l:item['word']] = l:item
             endif
         endfor
     endfor
