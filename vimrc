@@ -19,6 +19,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-operator-user'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mechatroner/rainbow_csv', { 'for': 'csv' }
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
 Plug 'preservim/tagbar', { 'on': 'TagbarOpen' }
@@ -47,6 +48,7 @@ let g:fzf_history_dir = '~/.vim/.fzf-history'
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
+let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in multi cursor
 
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
