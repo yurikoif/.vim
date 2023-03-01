@@ -49,6 +49,7 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
 let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in multi cursor
+let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
 
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
