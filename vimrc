@@ -54,6 +54,7 @@ let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 let g:UltiSnipsExpandTrigger="<CR>"
 
 sy enable
