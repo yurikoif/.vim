@@ -1,4 +1,5 @@
 call plug#begin()
+Plug 'Exafunction/codeium.vim', { 'for': ['cpp', 'python', 'markdown'] }
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
@@ -56,6 +57,9 @@ inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 let g:UltiSnipsExpandTrigger="<CR>"
+
+let g:codeium_no_map_tab = 1
+imap <script><silent><nowait><expr> <C-g> codeium#Accept()
 
 sy enable
 filetype on
