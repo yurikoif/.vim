@@ -83,6 +83,8 @@ set autochdir
 set viewoptions-=options
 set sessionoptions-=options
 set shortmess-=S
+set incsearch
+set smartcase
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
