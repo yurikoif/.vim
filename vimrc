@@ -73,7 +73,7 @@ set shiftwidth=4
 set softtabstop=4
 set wildmenu
 set wildmode=longest:full
-set completeopt=menuone,noinsert,preview
+set completeopt=menuone,noinsert,preview " select 1st item in the menu, do not insert into buffer but show preview
 set autochdir
 " keep pwd, highlight, background settings, etc.
 set viewoptions-=options
