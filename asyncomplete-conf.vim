@@ -1,6 +1,11 @@
 let g:asyncomplete_min_chars=2
+let g:asyncomplete_auto_completeopt = 0
 
-inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+" tab complete & enter snippet
+inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+let g:UltiSnipsExpandTrigger="<CR>"
 
 " register asyncomplete.vim sources
 if has('python3')

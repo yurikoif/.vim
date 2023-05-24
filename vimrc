@@ -53,12 +53,6 @@ let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
 let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in multi cursor
 let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
 
-" tab complete & enter snippet
-inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-let g:UltiSnipsExpandTrigger="<CR>"
-
 sy enable
 filetype on
 color koehler
@@ -79,7 +73,7 @@ set shiftwidth=4
 set softtabstop=4
 set wildmenu
 set wildmode=longest:full
-set completeopt=longest,menuone
+set completeopt=menuone,noinsert,preview
 set autochdir
 " keep pwd, highlight, background settings, etc.
 set viewoptions-=options
