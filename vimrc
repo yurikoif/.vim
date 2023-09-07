@@ -123,6 +123,7 @@ endif
 
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<CR>
+nmap <silent> <leader>grep :Grepper<CR>
 nmap <silent> <leader>tag :TagbarOpen f<CR>
 nmap <silent> <leader>ls :NERDTreeFocus<CR>
 
