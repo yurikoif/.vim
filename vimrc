@@ -116,14 +116,13 @@ if executable('rg')
     imap <C-f> <ESC>:Rg<CR>
     vmap <C-f> <ESC>:Rg<CR>
 else
-    nmap <C-f> :Lines<CR>
-    imap <C-f> <ESC>:Lines<CR>
-    vmap <C-f> <ESC>:Lines<CR>
+    nmap <C-f> :Grepper<CR>
+    imap <C-f> <ESC>:Grepper<CR>
+    vmap <C-f> <ESC>:Grepper<CR>
 endif
 
 let mapleader = " "
 nmap <silent> <leader><TAB> :Buffers<CR>
-nmap <silent> <leader>grep :Grepper<CR>
 nmap <silent> <leader>tag :TagbarOpen f<CR>
 nmap <silent> <leader>ls :NERDTreeFocus<CR>
 
