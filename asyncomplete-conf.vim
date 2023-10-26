@@ -1,4 +1,4 @@
-let g:asyncomplete_min_chars=2
+let g:asyncomplete_min_chars=1
 let g:asyncomplete_auto_completeopt = 0
 
 " tab complete & enter snippet
