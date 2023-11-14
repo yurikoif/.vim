@@ -4,7 +4,7 @@ parser.add_argument('-', type=str, default='', choices=[])
 args = parser.parse_args()
 endsnippet	
 
-snippet shpfileOpen "open shpfile"
+snippet shpfileRead "read shpfile"
 dr = ogr.GetDriverByName('ESRI Shapefile')
 ds = dr.Open(${1:shp_path})
 layer = ds.GetLayer()
@@ -13,7 +13,7 @@ for f in layer:
 del ds
 endsnippet	
 
-snippet shpfileOpenWithCoordTrans "open shpfile with coord trans"
+snippet shpfileReadWithCoordTrans "read shpfile with coord trans"
 ds, layer, tr = getDsLayerTr(${1:shp_path})
 for f in layer:
     del f
