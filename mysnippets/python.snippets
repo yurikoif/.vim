@@ -1,0 +1,48 @@
+snippet argparse "add argparse"
+parser = argparse.ArgumentParser()
+parser.add_argument('-', type=str, default='', choices=[])
+args = parser.parse_args()
+endsnippet	
+
+snippet shpfileOpen "open shpfile"
+dr = ogr.GetDriverByName('ESRI Shapefile')
+ds = dr.Open(${1:shp_path})
+layer = ds.GetLayer()
+for f in layer:
+    del f
+del ds
+endsnippet	
+
+snippet shpfileOpenWithCoordTrans "open shpfile with coord trans"
+ds, layer, tr = getDsLayerTr(${1:shp_path})
+for f in layer:
+    del f
+del ds
+endsnippet	
+
+snippet shpfileCreate "create shpfile and setup features"
+dr = ogr.GetDriverByName('ESRI Shapefile')
+dr.DeleteDataSource(${1:shp_path})
+ds = dr.CreateDataSource(${1:shp_path})
+srs = osr.SpatialReference()
+srs.ImportFromEPSG(${2:4326})
+layer = ds.CreateLayer('', srs, ${3:ogr.wkbPolygon})
+
+col = ogr.FieldDefn('', ogr.OFTString)
+layer.CreateField(col)
+col = ogr.FieldDefn('', ogr.OFTInteger)
+col.SetWidth(50)
+layer.CreateField(col)
+col = ogr.FieldDefn('', ogr.OFTReal)
+col.SetWidth(10)
+col.SetPrecision(3)
+layer.CreateField(col)
+
+for i, geom in enumerate(geoms):
+    f = ogr.Feature(layer.GetLayerDefn())
+    f.SetGeometry(geom)
+    #f.SetField('', )
+    layer.CreateFeature(f)
+    f = None
+ds = None
+endsnippet	
