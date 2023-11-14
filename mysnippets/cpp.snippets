@@ -1,0 +1,21 @@
+snippet shpfileCreate "create shpfile"
+std::string wkt;
+GProjTransform::GetWkt(4326, wkt);
+auto out_book = GMonoBook::CreateAndOverwriteAsShapefileWithWkt(
+  ${1:shp_path},
+  wkt,
+  wkbPolygon);
+out_book->AddField("", OFTString);
+out_book->AddField("", OFTInteger);
+out_book->AddField("", OFTReal);
+
+for (auto geom: geoms) {
+  OGRFeature* f = out_book->GetEmptyFeature();
+  f->SetGeometry(geom);
+  #f->SetField("", );
+  out_book->AddFeature(f);
+  OGRFeature::DestroyFeature(f);
+}
+out_book->save();
+out_book->close();
+endsnippet
