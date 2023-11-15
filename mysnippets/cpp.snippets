@@ -1,10 +1,22 @@
+snippet shpfileRead "read shpfile"
+GMonoBook shp_book;
+shp_book.open(${1:shp_path});
+auto shp_wkt = shp_book.GetProjection("wkt");
+for (OGRFeature *f; (f = shp_book.GetNextFeature()) != NULL; ) {
+  auto g = f->GetGeometryRef();
+  auto h = f->GetFieldAsString("");
+  OGRFeature::DestroyFeature(f);
+}
+shp_book.close();
+endsnippet
+
 snippet shpfileCreate "create shpfile"
 std::string wkt;
-GProjTransform::GetWkt(4326, wkt);
+GProjTransform::GetWkt(${2:4326}, wkt);
 auto out_book = GMonoBook::CreateAndOverwriteAsShapefileWithWkt(
   ${1:shp_path},
   wkt,
-  wkbPolygon);
+  ${1:wkbPolygon});
 out_book->AddField("", OFTString);
 out_book->AddField("", OFTInteger);
 out_book->AddField("", OFTReal);
