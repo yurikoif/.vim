@@ -22,7 +22,7 @@ out_book->AddField("", OFTInteger);
 out_book->AddField("", OFTReal);
 
 for (auto geom: geoms) {
-  OGRFeature* f = out_book->GetEmptyFeature();
+  auto f = out_book->GetEmptyFeature();
   f->SetGeometry(geom);
   #f->SetField("", );
   out_book->AddFeature(f);
