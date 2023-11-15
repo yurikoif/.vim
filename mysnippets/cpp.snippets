@@ -19,3 +19,11 @@ for (auto geom: geoms) {
 out_book->save();
 out_book->close();
 endsnippet
+
+snippet OGRCoordTrans "declare OGR coordinate transformation"
+OGRSpatialReference src, dst;
+src.importFromEPSG(${1:src_epsg});
+dst.importFromEPSG(${1:dst_epsg});
+auto trans = OGRCreateCoordinateTransformation(&src, &dst);
+auto rev_trans = OGRCreateCoordinateTransformation(&dst, &src);
+endsnippet
