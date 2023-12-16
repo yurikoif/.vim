@@ -13,6 +13,7 @@ if has('python3')
     Plug 'honza/vim-snippets'
 endif
 Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
