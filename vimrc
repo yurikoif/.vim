@@ -1,13 +1,5 @@
 call plug#begin()
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-Plug 'prabirshrestha/asyncomplete-tags.vim'
-Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-if executable('clangd') || executable('pyright')
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
-endif
+Plug 'ycm-core/YouCompleteMe', {'do': './install.py --clangd-completer'}
 if has('python3')
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -55,6 +47,12 @@ let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
 let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in multi cursor
 let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+" https://github.com/ycm-core/YouCompleteMe/wiki/FAQ#ycm-conflicts-with-ultisnips-tab-key-usage
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:gutentags_ctags_extra_args = ['--fields=+l'] " YCM support
 
 sy enable
 filetype on
