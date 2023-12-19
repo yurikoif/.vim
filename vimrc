@@ -51,8 +51,8 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:gutentags_ctags_extra_args = ['--fields=+l'] " YCM support
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:gutentags_ctags_extra_args = ['--fields=+l'] " YCM support
 
 sy enable
 filetype on
