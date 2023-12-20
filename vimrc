@@ -139,3 +139,9 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+" tmux setups:
+" set-window-option -g xterm-keys on
+" set-option -g default-shell /bin/bash
+" set -g default-terminal screen-256color
+" bind b   select-pane -t :.+
+" bind C-b select-pane -t :.+
