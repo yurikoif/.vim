@@ -1,15 +1,17 @@
 
 fu! PathSess()
-    let home_dir = fnamemodify('~', ':p')
-    execute 'silent !mkdir -p ' . home_dir . '.vim/sessions'
+    let session_dir = fnamemodify('~', ':p') . '.vim/sessions/'
+    if !isdirectory(session_dir)
+        call mkdir(session_dir, 'p')
+    endif
     let git_dir = substitute(system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:'),'\n','','g')
     " echo git_dir
     if isdirectory(git_dir)
         let git_dir_name = substitute(git_dir, '/', '.', 'g')
         " echo git_dir_name
-        return home_dir . '.vim/sessions/' . git_dir_name . '.vim'
+        return session_dir . git_dir_name . '.vim'
     else
-        return home_dir . '.vim/sessions/.session.vim'
+        return session_dir . '.session.vim'
     endif
 endfunction
 
