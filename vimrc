@@ -1,5 +1,4 @@
 call plug#begin()
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'ycm-core/YouCompleteMe', {'do': './install.py --clangd-completer'}
 if has('python3')
     Plug 'SirVer/ultisnips'
