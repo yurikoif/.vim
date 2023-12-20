@@ -54,6 +54,7 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 " let g:ycm_collect_identifiers_from_tags_files = 1
 " let g:gutentags_ctags_extra_args = ['--fields=+l'] " YCM support
+set encoding=utf-8
 
 sy enable
 filetype on
