@@ -29,13 +29,18 @@ fu! RsyncProjRaw(git_dir, remote_dir)
     " if len(lines) > 10
     "     let lines = lines[0 : 3] + ['...'] + lines[len(lines) - 4 : len(lines) - 1]
     " endif
+    " echom output
     for line in lines
        echom line
     endfor
     if v:shell_error == 0
         return 'rsync successful: ' . a:git_dir . ' --> ' . a:remote_dir
     else
-        return lines[len(lines) - 1] . ': ' . a:git_dir . ' --> ' . a:remote_dir
+        let line = lines[len(lines) - 1]
+        if len(lines) > 100
+            let line = line[0 : 100 - 1] . '...'
+        endif
+        return line . ': ' . a:git_dir . ' --> ' . a:remote_dir
     endif
 endfunction
 
