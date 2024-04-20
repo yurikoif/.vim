@@ -27,17 +27,16 @@ fu! RsyncProjRaw(git_dir, remote_dir)
     let output = system("rsync --exclude='.*.swp' -avxhz " . a:git_dir . '/ ' . a:remote_dir . '/')
     let lines = split(output, '\n')
     if len(lines) > 10
-        let lines = lines[0 : 4] + ['...'] + lines[len(lines) - 5 : len(lines) - 1]
+        let lines = lines[0 : 3] + ['...'] + lines[len(lines) - 4 : len(lines) - 1]
     endif
     for line in lines
        echom line
     endfor
     if v:shell_error == 0
-        echom 'rsync successful:' a:git_dir '-->' a:remote_dir
+        return 'rsync successful: ' . a:git_dir . ' --> ' . a:remote_dir
     else
-        echom 'rsync failed:' a:git_dir '-->' a:remote_dir
+        return 'rsync failed with code ' . v:shell_error . ': ' . a:git_dir . ' --> ' . a:remote_dir
     endif
-    return v:shell_error
 endfunction
 
 fu! RsyncProj()
@@ -47,9 +46,9 @@ fu! RsyncProj()
         for [l:key, l:value] in items(g:rsync_proj_conf_list)
             echom 'registered:' l:key '-->' l:value
         endfor
-        return
+        return ''
     endif
-    let code = RsyncProjRaw(git_dir, g:rsync_proj_conf_list[git_dir])
+    return RsyncProjRaw(git_dir, g:rsync_proj_conf_list[git_dir])
 endfunction
 
 fu! RsyncProjAdd(remote_dir)
@@ -67,13 +66,21 @@ fu! RsyncProjAdd(remote_dir)
         echom 'project directory names do not match:' fnamemodify(git_dir, ':t') '|' fnamemodify(l:remote_dir, ':t') '; abort'
         return
     endif
-    let code = RsyncProjRaw(git_dir, l:remote_dir)
+    echom RsyncProjRaw(git_dir, l:remote_dir)
     let g:rsync_proj_conf_list[git_dir] = l:remote_dir
+endfunction
+
+fu! RsyncProjSilent()
+    silent let res = RsyncProj()
+    if res != ''
+        echom res
+    endif
 endfunction
 
 au VimLeave * call RsyncProjConfSave()
 " au VimEnter * nested if argc() == 0 | call RsyncProjConfLoad() | endif
 au VimEnter * call RsyncProjConfLoad()
+au BufWritePost * call RsyncProjSilent()
 
-command RsyncProj call RsyncProj()
+command RsyncProj echo RsyncProj()
 command -nargs=1 RsyncProjAdd call RsyncProjAdd('<args>')
