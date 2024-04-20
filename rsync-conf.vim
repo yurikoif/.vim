@@ -4,10 +4,10 @@ fu! RsyncProjConfSave()
     if !isdirectory(rsync_proj_conf)
         let l:write_list = []
         for [l:key, l:value] in items(g:rsync_proj_conf_list)
-            echom 'add:' l:key l:value
+            " echom 'add:' l:key l:value
             call add(l:write_list, l:key . ' ' . l:value)
         endfor
-        echom l:write_list
+        " echom l:write_list
         call writefile(l:write_list, l:rsync_proj_conf)
     endif
 endfunction
@@ -43,9 +43,9 @@ endfunction
 fu! RsyncProj()
     let git_dir = substitute(system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:'),'\n','','g')
     if !has_key(g:rsync_proj_conf_list, git_dir)
-        echom 'not in a rsync project directory:' fnamemodify('%', ':p:h')
+        echom 'not in a registered rsync project directory:' fnamemodify('%', ':p:h')
         for [l:key, l:value] in items(g:rsync_proj_conf_list)
-            echom l:key '-->' l:value
+            echom 'registered:' l:key '-->' l:value
         endfor
         return
     endif
