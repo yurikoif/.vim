@@ -26,16 +26,16 @@ endfunction
 fu! RsyncProjRaw(git_dir, remote_dir)
     let output = system("rsync --exclude='.*.swp' -avxhz " . a:git_dir . '/ ' . a:remote_dir . '/')
     let lines = split(output, '\n')
-    if len(lines) > 10
-        let lines = lines[0 : 3] + ['...'] + lines[len(lines) - 4 : len(lines) - 1]
-    endif
+    " if len(lines) > 10
+    "     let lines = lines[0 : 3] + ['...'] + lines[len(lines) - 4 : len(lines) - 1]
+    " endif
     for line in lines
        echom line
     endfor
     if v:shell_error == 0
         return 'rsync successful: ' . a:git_dir . ' --> ' . a:remote_dir
     else
-        return 'rsync failed with code ' . v:shell_error . ': ' . a:git_dir . ' --> ' . a:remote_dir
+        return lines[len(lines) - 1] . ': ' . a:git_dir . ' --> ' . a:remote_dir
     endif
 endfunction
 
