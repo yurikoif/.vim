@@ -75,10 +75,19 @@ fu! RsyncProjAdd(remote_dir)
     let g:rsync_proj_conf_list[git_dir] = l:remote_dir
 endfunction
 
+
 fu! RsyncProjSilent()
-    silent let res = RsyncProj()
-    if res != ''
-        echom res
+    silent let g:rsync_proj_silent_res = RsyncProj()
+    if g:rsync_proj_silent_res != ''
+        if version >= 800
+            fu! Logger(timer)
+                " redraw!
+                echom g:rsync_proj_silent_res
+            endfunction
+            let timer = timer_start(1000, 'Logger', {})
+        else
+            echom g:rsync_proj_silent_res
+        endif
     endif
 endfunction
 
