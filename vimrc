@@ -108,6 +108,7 @@ set backspace=indent,eol,start
 
 nmap <C-o> :GFiles<CR>
 " imap <C-o> <ESC>:GFiles<CR>
+" imap <C-o> <ESC><Right>ys
 vmap <C-o> <ESC>:GFiles<CR>
 if executable('rg')
     command! -bang -nargs=* Rg
