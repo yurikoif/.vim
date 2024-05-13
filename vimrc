@@ -51,7 +51,12 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:ycm_add_preview_to_completeopt="popup"
+let g:ycm_clangd_args = [ '--header-insertion=never' ]
 " let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_semantic_triggers =  {
+"   \   'c,cpp,objc': [ 're!\w{4}', '_' ],
+"   \ }
 " let g:gutentags_ctags_extra_args = ['--fields=+l'] " YCM support
 set encoding=utf-8
 

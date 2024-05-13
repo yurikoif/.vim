@@ -1,4 +1,6 @@
 
+let g:rsync_proj_after_save_buffer = 1
+
 fu! RsyncProjConfSave()
     if !isdirectory(g:rsync_proj_conf)
         let l:write_list = []
@@ -93,7 +95,8 @@ endfunction
 au VimLeave * call RsyncProjConfSave()
 " au VimEnter * nested if argc() == 0 | call RsyncProjConfLoad() | endif
 au VimEnter * call RsyncProjConfLoad()
-au BufWritePost * call RsyncProjSilent()
+au BufWritePost * if g:rsync_proj_after_save_buffer | call RsyncProjSilent() | endif
 
 command RsyncProj echo RsyncProj()
 command -nargs=1 RsyncProjAdd call RsyncProjAdd('<args>')
+command RsyncProjToggle let g:rsync_proj_after_save_buffer = !g:rsync_proj_after_save_buffer
