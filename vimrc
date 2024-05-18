@@ -66,6 +66,7 @@ color koehler
 hi Normal guibg=NONE ctermbg=NONE
 hi Statement cterm=bold
 hi Type cterm=bold
+hi Pmenu ctermbg=blue
 
 set nocompatible
 set hlsearch
