@@ -25,7 +25,7 @@ fu! RsyncProjConfLoad()
 endfunction
 
 fu! RsyncProjRaw(git_dir, remote_dir)
-    let output = system("rsync --exclude='.*.swp --exclude=*build* --exclude=*install*' -avxhz " . a:git_dir . '/ ' . a:remote_dir . '/')
+    let output = system("rsync --exclude=.*.swp --exclude=*build* --exclude=*install* -avxhz " . a:git_dir . '/ ' . a:remote_dir . '/')
     let lines = split(output, '\n')
     " if len(lines) > 10
     "     let lines = lines[0 : 3] + ['...'] + lines[len(lines) - 4 : len(lines) - 1]
