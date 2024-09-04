@@ -23,7 +23,8 @@ Plug 'mechatroner/rainbow_csv', { 'for': 'csv' }
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'preservim/nerdtree', { 'on': ['NERDTreeFocus', 'NERDTreeToggle'] }
-Plug 'preservim/tagbar', { 'on': 'TagbarOpen' }
+" Plug 'preservim/tagbar', { 'on': 'TagbarOpen' }
+Plug 'preservim/tagbar'
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -41,7 +42,7 @@ call plug#end()
 " yswf: function parentheses insertion operator
 " S: parentheses insertion operator in virsual mode
 
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#flags = 'f'
 let g:grepper = {}
 let g:grepper.dir = 'repo,file' " grep from repo root; try current file dir if fails
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
