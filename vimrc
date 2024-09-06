@@ -43,6 +43,7 @@ call plug#end()
 " S: parentheses insertion operator in virsual mode
 
 let g:airline#extensions#tagbar#flags = 'f'
+let g:airline#extensions#default#layout = [ [ 'a', 'b', 'c', 'x' ], [ 'y', 'z', 'warning' ] ]
 let g:grepper = {}
 let g:grepper.dir = 'repo,file' " grep from repo root; try current file dir if fails
 let g:gutentags_cache_dir = expand('~/.vim/ctags/')
