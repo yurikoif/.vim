@@ -154,3 +154,5 @@ endif
 " set -g default-terminal screen-256color
 " bind b   select-pane -t :.+
 " bind C-b select-pane -t :.+
+
+nnoremap <silent> <C-]> :let g:current_buf = map(filter(getbufinfo(), 'v:val.listed'), 'v:val.bufnr')<CR><C-]>:if index(g:current_buf,bufnr('%')) == -1 <bar> setlocal bufhidden=delete <bar> endif<CR>
