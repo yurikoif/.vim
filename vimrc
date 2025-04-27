@@ -48,10 +48,12 @@ let g:gutentags_cache_dir = expand('~/.vim/ctags/')
 let g:clang_format#code_style = "mozilla"
 let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
-let g:fzf_history_dir = '~/.vim/.fzf-history'
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
-let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
+let g:fzf_history_dir = expand('~/.vim/.fzf-history')
+if has_key(g:plugs, 'vim-lsp')
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+    let g:lsp_settings_filetype_python = [ 'pyright-langserver' ]
+endif
 let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in multi cursor
 let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]

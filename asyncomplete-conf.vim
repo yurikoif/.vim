@@ -1,3 +1,7 @@
+if !has_key(g:plugs, 'asyncomplete.vim')
+    finish
+endif
+
 let g:asyncomplete_min_chars=1
 let g:asyncomplete_auto_completeopt = 0
 
