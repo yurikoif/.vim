@@ -104,6 +104,9 @@ endif
 
 command DeleteTrailingWhitespace %s/\s\+$//e
 
+nmap _ :TagbarJumpPrev<CR>
+nmap + :TagbarJumpNext<CR>
+
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
