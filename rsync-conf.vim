@@ -24,28 +24,45 @@ fu! RsyncProjConfLoad()
     endif
 endfunction
 
-fu! RsyncProjRaw(git_dir, remote_dir)
-    let output = system("rsync --exclude=\".*.swp\" --exclude=\"*build*\" --exclude=\"*install*\" -avxhz " . a:git_dir . '/ ' . a:remote_dir . '/')
-    let lines = split(output, '\n')
-    " if len(lines) > 10
-    "     let lines = lines[0 : 3] + ['...'] + lines[len(lines) - 4 : len(lines) - 1]
-    " endif
-    " echom output
-    for line in lines
-       echom line
-    endfor
-    if v:shell_error == 0
-        return 'rsync successful | ' . a:git_dir . ' --> ' . a:remote_dir
+let s:job_output = []
+
+function! s:RawCallback(ch, msg)
+    if !empty(a:msg)
+        call add(s:job_output, a:msg)
+    endif
+endfunction
+
+function! s:ExitCallback(silent_call, git_dir, remote_dir, ch, status)
+    if !a:silent_call || a:status != 0
+        for line in s:job_output
+            echom line
+        endfor
+    endif
+    if a:status == 0
+        echom 'rsync successful | ' . a:git_dir . ' --> ' . a:remote_dir
     else
+        let lines = s:job_output
         let line = lines[len(lines) - 1]
         if len(lines) > 100
             let line = line[0 : 100 - 1] . '...'
         endif
-        return line . ' | ' . a:git_dir . ' --> ' . a:remote_dir
+        echom line . ' | ' . a:git_dir . ' --> ' . a:remote_dir
     endif
+    let s:job_output = []  " Clear for next use
 endfunction
 
-fu! RsyncProj()
+fu! RsyncProjRaw(silent_call, git_dir, remote_dir)
+    let cmd = ['rsync', '--exclude=\".*.swp\"', '--exclude=\"*build*\"', '--exclude=\"*install*\"',
+                \ '-avxhz', a:git_dir . '/', a:remote_dir . '/']
+    let job = job_start(cmd, {
+                \ 'out_mode': 'nl',
+                \ 'err_mode': 'nl',
+                \ 'out_cb': function('s:RawCallback'),
+                \ 'err_cb': function('s:RawCallback'),
+                \ 'exit_cb': function('s:ExitCallback', [a:silent_call, a:git_dir, a:remote_dir]) })
+endfunction
+
+fu! RsyncProj(silent_call)
     let git_dir = substitute(system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:'),'\n','','g')
     if !has_key(g:rsync_proj_conf_list, git_dir)
         echom 'not in a registered rsync project directory:' fnamemodify('%', ':p:h')
@@ -54,7 +71,7 @@ fu! RsyncProj()
         endfor
         return ''
     endif
-    return RsyncProjRaw(git_dir, g:rsync_proj_conf_list[git_dir])
+    return RsyncProjRaw(a:silent_call, git_dir, g:rsync_proj_conf_list[git_dir])
 endfunction
 
 fu! RsyncProjAdd(remote_dir)
@@ -72,31 +89,16 @@ fu! RsyncProjAdd(remote_dir)
         echom 'project directory names do not match:' fnamemodify(git_dir, ':t') '|' fnamemodify(l:remote_dir, ':t') '; abort'
         return
     endif
-    echom RsyncProjRaw(git_dir, l:remote_dir)
+    echom RsyncProjRaw(0, git_dir, l:remote_dir)
     let g:rsync_proj_conf_list[git_dir] = l:remote_dir
 endfunction
 
 
-fu! RsyncProjSilent()
-    silent let g:rsync_proj_silent_res = RsyncProj()
-    if g:rsync_proj_silent_res != ''
-        if version >= 800
-            fu! Logger(timer)
-                " redraw!
-                echom g:rsync_proj_silent_res
-            endfunction
-            let timer = timer_start(1000, 'Logger', {})
-        else
-            echom g:rsync_proj_silent_res
-        endif
-    endif
-endfunction
-
 au VimLeave * call RsyncProjConfSave()
 " au VimEnter * nested if argc() == 0 | call RsyncProjConfLoad() | endif
 au VimEnter * call RsyncProjConfLoad()
-au BufWritePost * if g:rsync_proj_after_save_buffer | call RsyncProjSilent() | endif
+au BufWritePost * if g:rsync_proj_after_save_buffer | silent call RsyncProj(1) | endif
 
-command RsyncProj echo RsyncProj()
+command RsyncProj call RsyncProj(0)
 command -nargs=1 RsyncProjAdd call RsyncProjAdd('<args>')
 command RsyncProjToggle let g:rsync_proj_after_save_buffer = !g:rsync_proj_after_save_buffer
