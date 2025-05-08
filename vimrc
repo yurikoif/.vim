@@ -96,11 +96,11 @@ set smartcase
 
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent loadview
-au Filetype h,hpp,c,cc,cpp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+au Filetype h,hpp,c,cc,cpp,cuda setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 if executable(g:clang_format#command)
-    au FileType h,hpp,c,cc,cpp map <buffer> = <Plug>(operator-clang-format)
+    au FileType h,hpp,c,cc,cpp,cuda map <buffer> = <Plug>(operator-clang-format)
 endif
-au FileType h,hpp,c,cc,cpp setlocal commentstring=//\ %s
+au FileType h,hpp,c,cc,cpp,cuda setlocal commentstring=//\ %s
 if exists(':RainbowAlign')
     au FileType csv nnoremap <buffer> <C-a> :RainbowAlign<CR>
     au FileType csv vnoremap <buffer> <C-a> :RainbowAlign<CR>
