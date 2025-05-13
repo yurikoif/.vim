@@ -141,6 +141,13 @@ nmap <silent> <leader><TAB> :Buffers<CR>
 nmap <silent> <leader>grep :Grepper<CR>
 nmap <silent> <leader>tag :TagbarOpen f<CR>
 nmap <silent> <leader>ls :NERDTreeFocus<CR>
+nmap <silent> <leader>c :tabnew<CR>
+nmap <silent> <leader>n :tabnext<CR>
+nmap <silent> <leader>p :tabnext<CR>
+nmap <silent> <leader><left> <C-w><left>
+nmap <silent> <leader><right> <C-w><right>
+nmap <silent> <leader><up> <C-w><up>
+nmap <silent> <leader><down> <C-w><down>
 
 for vimfile in split(globpath('~/.vim', '*.vim'), '\n')
     execute('source ' . vimfile)
