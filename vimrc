@@ -24,6 +24,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'AndrewRadev/linediff.vim'
+Plug 'yssl/QFEnter'
 call plug#end()
 
 " gc: comment operator
@@ -94,8 +95,8 @@ set shortmess-=S
 set incsearch
 set smartcase
 
-au BufWinLeave *.* mkview
-au BufWinEnter *.* silent loadview
+au BufWinLeave *.* if &buftype == '' | mkview | endif
+au BufWinEnter *.* if &buftype == '' | silent loadview | endif
 au Filetype h,hpp,c,cc,cpp,cuda setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 if executable(g:clang_format#command)
     au FileType h,hpp,c,cc,cpp,cuda map <buffer> = <Plug>(operator-clang-format)
@@ -168,3 +169,12 @@ endif
 " bind C-b select-pane -t :.+
 
 nnoremap <silent> <C-]> :let g:current_buf = map(filter(getbufinfo(), 'v:val.listed'), 'v:val.bufnr')<CR><C-]>:if index(g:current_buf,bufnr('%')) == -1 <bar> setlocal bufhidden=delete <bar> endif<CR>
+
+
+let g:qfenter_keymap = {}
+" let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+" let g:qfenter_keymap.vopen = ['<Leader><CR>']
+" let g:qfenter_keymap.hopen = ['<Leader><Space>']
+" let g:qfenter_keymap.topen = ['<Leader><Tab>']
+let g:qfenter_keymap.topen = ['<CR>', '<2-LeftMouse>'] " always open in new tab
+let g:qfenter_autoclose = 1
