@@ -53,9 +53,9 @@ let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in mul
 let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 " https://github.com/ycm-core/YouCompleteMe/wiki/FAQ#ycm-conflicts-with-ultisnips-tab-key-usage
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsExpandTrigger = '<CR>'
+" let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+" let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:ycm_add_preview_to_completeopt="popup"
 let g:ycm_clangd_args = [ '--header-insertion=never' ]
 " let g:ycm_collect_identifiers_from_tags_files = 1
