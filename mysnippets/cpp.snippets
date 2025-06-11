@@ -24,7 +24,7 @@ out_book->AddField("", OFTReal);
 for (auto geom: geoms) {
   auto f = out_book->GetEmptyFeature();
   f->SetGeometry(geom);
-  #f->SetField("", );
+  // f->SetField("", );
   out_book->AddFeature(f);
   OGRFeature::DestroyFeature(f);
 }
