@@ -144,7 +144,7 @@ nmap <silent> <leader>tag :TagbarOpen f<CR>
 nmap <silent> <leader>ls :NERDTreeFocus<CR>
 nmap <silent> <C-x>c :tabnew<CR>
 nmap <silent> <C-x>n :tabnext<CR>
-nmap <silent> <C-x>p :tabnext<CR>
+nmap <silent> <C-x>p :tabprev<CR>
 
 for vimfile in split(globpath('~/.vim', '*.vim'), '\n')
     execute('source ' . vimfile)
