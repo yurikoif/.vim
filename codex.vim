@@ -110,6 +110,20 @@ function! CodexToggle() abort
 
     let g:codex_bufnr = bufnr('%')
 
+    " Collect the absolute paths of files visible in current Vim windows as contexts
+    let l:files = []
+    for w in range(1, winnr('$'))
+        let l:buf = winbufnr(w)
+        if bufloaded(l:buf) && filereadable(expand('#'.l:buf.':p'))
+            call add(l:files, expand('#'.l:buf.':p'))
+        endif
+    endfor
+
+    if !empty(l:files)
+        let l:context = "Context: files open in Vim:\n" . join(l:files, "\n") . "\n\n"
+        call term_sendkeys(g:codex_bufnr, l:context)
+    endif
+
     call s:CodexPlacePane()
     call s:CodexSetupBuffer()
   endif
