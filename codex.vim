@@ -17,17 +17,17 @@ if executable(get(g:, 'codex_command', 'codex')) == 0
   finish
 endif
 
-if exists('g:loaded_codex_vim')
-  finish
-endif
-let g:loaded_codex_vim = 1
-
 if !has('terminal')
   echohl WarningMsg
   echom "codex.vim: this Vim was built without :terminal support."
   echohl None
   finish
 endif
+
+if exists('g:loaded_codex_vim')
+  finish
+endif
+let g:loaded_codex_vim = 1
 
 " Helper: get Codex command (user-overrideable)
 function! s:CodexCommand() abort
@@ -134,11 +134,6 @@ endfunction
 
 " Public: send visual selection to Codex with a wrapper prompt
 function! CodexSendSelectionWithPrompt() range abort
-  if !has('terminal')
-    echoerr "codex.vim: :terminal not supported in this Vim."
-    return
-  endif
-
   " 1. Grab selected text
   let l:lines = getline(a:firstline, a:lastline)
   let l:text  = join(l:lines, "\n")
@@ -155,18 +150,22 @@ function! CodexSendSelectionWithPrompt() range abort
 
   " Ask user what they want Codex to do
   let l:task = input('Codex task (empty = just share snippet): ')
+  if v:shell_error == 1
+    echo "codex.vim: task input cancelled"
+    return
+  endif
 
   let l:prompt  = 'You are an AI coding assistant integrated into Vim.' . "\n"
-  let l:prompt .= 'I am working in file: ' . l:file . ' (' . l:loc . ').' . "\n"
+  let l:prompt .= 'I am working on this code snippet at ' . l:file . ' (' . l:loc . '):' . "\n"
+  " Add fenced code block for better context
+  let l:prompt .= '```' . l:ft . "\n" . l:text . "\n```\n"
+  let l:prompt .= 'Look for more context only if it is necessary.' . "\n"
 
   if !empty(l:task)
     let l:prompt .= 'Task: ' . l:task . "\n"
   else
     let l:prompt .= 'Please read this snippet and wait for my next instruction.' . "\n"
   endif
-
-  " Add fenced code block for better context
-  let l:prompt .= '```' . l:ft . "\n" . l:text . "\n```"
 
   " 3. Remember original window so we can return
   let l:orig_win = winnr()
