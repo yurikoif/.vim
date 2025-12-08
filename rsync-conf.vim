@@ -98,6 +98,7 @@ au VimLeave * call RsyncProjConfSave()
 " au VimEnter * nested if argc() == 0 | call RsyncProjConfLoad() | endif
 au VimEnter * call RsyncProjConfLoad()
 au BufWritePost * if g:rsync_proj_after_save_buffer | silent call RsyncProj(1) | endif
+au BufWritePost * if expand('<afile>:p') ==# g:rsync_proj_conf | silent call RsyncProjConfLoad() | endif
 
 command RsyncProj call RsyncProj(0)
 command -nargs=1 RsyncProjAdd call RsyncProjAdd('<args>')
