@@ -14,14 +14,14 @@ augroup CodexMissingWarning
   autocmd!
 if executable(get(g:, 'codex_command', 'codex')) == 0
   autocmd VimEnter * echohl WarningMsg |
-          \ echo "codex.vim: 'codex' executable not found in PATH (plugin inactive)" |
+          \ echom "codex.vim: 'codex' executable not found in PATH (plugin inactive)" |
           \ echohl None
   finish
 endif
 
 if !has('terminal')
   autocmd VimEnter * echohl WarningMsg |
-          \ echo "codex.vim: this Vim was built without :terminal support." |
+          \ echom "codex.vim: this Vim was built without :terminal support." |
           \ echohl None
   finish
 endif
