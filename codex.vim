@@ -10,19 +10,22 @@
 "   let g:codex_pane_ratio = 0.4           " fraction of screen for Codex pane (height or width)
 
 " Ensure Codex executable exists before loading this plugin
+augroup CodexMissingWarning
+  autocmd!
 if executable(get(g:, 'codex_command', 'codex')) == 0
-  echohl WarningMsg
-  echom "codex.vim: 'codex' executable not found in PATH. Plugin disabled."
-  echohl None
+  autocmd VimEnter * echohl WarningMsg |
+          \ echo "codex.vim: 'codex' executable not found in PATH (plugin inactive)" |
+          \ echohl None
   finish
 endif
 
 if !has('terminal')
-  echohl WarningMsg
-  echom "codex.vim: this Vim was built without :terminal support."
-  echohl None
+  autocmd VimEnter * echohl WarningMsg |
+          \ echo "codex.vim: this Vim was built without :terminal support." |
+          \ echohl None
   finish
 endif
+augroup END
 
 if exists('g:loaded_codex_vim')
   finish
