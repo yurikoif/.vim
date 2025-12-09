@@ -5,9 +5,16 @@ fu! RsyncProjConfSave()
     if !isdirectory(g:rsync_proj_conf)
         let l:write_list = []
         for [l:key, l:value] in items(g:rsync_proj_conf_list)
+            if l:key == '#'
+                for l:line in l:value
+                    call add(l:write_list, l:line)
+                endfor
+                continue
+            endif
             " echom 'add:' l:key l:value
             call add(l:write_list, l:key . ' ' . l:value)
         endfor
+        call sort(l:write_list)
         " echom l:write_list
         call writefile(l:write_list, g:rsync_proj_conf)
     endif
@@ -18,6 +25,13 @@ fu! RsyncProjConfLoad()
     let g:rsync_proj_conf = fnamemodify('~', ':p') . '.vim/sessions/rsync.proj.conf'
     if filereadable(g:rsync_proj_conf)
         for l:line in readfile(g:rsync_proj_conf)
+            if l:line =~ '^#'
+                if !has_key(g:rsync_proj_conf_list, '#')
+                    let g:rsync_proj_conf_list['#'] = []
+                endif
+                call add(g:rsync_proj_conf_list['#'], l:line)
+                continue
+            endif
             let l:pair = split(l:line)
             let g:rsync_proj_conf_list[l:pair[0]] = l:pair[1]
         endfor
