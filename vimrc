@@ -120,10 +120,10 @@ vmap <BS> "_d<ESC>
 vmap <DEL> "_d
 set backspace=indent,eol,start
 
-nmap <C-o> :GFiles<CR>
+" nmap <C-o> :GFiles<CR>
 " imap <C-o> <ESC>:GFiles<CR>
 " imap <C-o> <ESC><Right>ys
-vmap <C-o> <ESC>:GFiles<CR>
+" vmap <C-o> <ESC>:GFiles<CR>
 if executable('rg')
     command! -bang -nargs=* Rg
                 \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1,
@@ -142,6 +142,8 @@ nmap <silent> <leader><TAB> :Buffers<CR>
 nmap <silent> <leader>grep :Grepper<CR>
 nmap <silent> <leader>tag :TagbarOpen f<CR>
 nmap <silent> <leader>ls :NERDTreeFocus<CR>
+nmap <silent> <leader>o :GFiles<CR>
+vmap <silent> <leader>o <ESC>:GFiles<CR>
 nmap <silent> <C-x>c :tabnew<CR>
 nmap <silent> <C-x>n :tabnext<CR>
 nmap <silent> <C-x>p :tabprev<CR>
