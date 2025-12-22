@@ -103,7 +103,7 @@ if exists(':RainbowAlign')
     au FileType csv vnoremap <buffer> <C-a> :RainbowAlign<CR>
 endif
 
-command DeleteTrailingWhitespace %s/\s\+$//e
+command! -range=% DeleteTrailingWhitespace <line1>,<line2>s/\s\+$//e
 
 nmap _ :TagbarJumpPrev<CR>
 nmap + :TagbarJumpNext<CR>
