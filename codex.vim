@@ -124,7 +124,7 @@ function! CodexToggle(...) abort
 
     let l:context = 'You are an AI coding assistant integrated into Vim.' . "\n"
     if !empty(l:files) && a:0 == 0
-        let l:context .= 'Context: file(s) at ' . join(l:files, "\n") . "\n\n"
+        let l:context .= 'Context: file(s) at ' . join(l:files, ", ") . "\n\n"
     endif
 
     call s:CodexPlacePane()
