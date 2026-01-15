@@ -90,7 +90,7 @@ function! s:CodexSetupBuffer() abort
 endfunction
 
 " Public: toggle Codex terminal pane
-function! CodexToggle() abort
+function! CodexToggle(...) abort
   " If we already have a Codex buffer recorded and it exists, reuse it
   if exists('g:codex_bufnr') && bufexists(g:codex_bufnr)
     let l:winnr = bufwinnr(g:codex_bufnr)
@@ -122,9 +122,9 @@ function! CodexToggle() abort
         endif
     endfor
 
-    if !empty(l:files)
-        let l:context = "Context: files open in Vim:\n" . join(l:files, "\n") . "\n\n"
-        call term_sendkeys(g:codex_bufnr, l:context)
+    let l:context = 'You are an AI coding assistant integrated into Vim.' . "\n"
+    if !empty(l:files) && a:0 == 0
+        let l:context .= 'Context: file(s) at ' . join(l:files, "\n") . "\n\n"
     endif
 
     call s:CodexPlacePane()
@@ -133,6 +133,13 @@ function! CodexToggle() abort
   if &buftype ==# 'terminal' && mode() ==# 'n'
     call feedkeys("i", 'n') " return to terminal mode
   endif
+
+  if exists('l:context')
+    call term_sendkeys(g:codex_bufnr, l:context)
+  endif
+  for item in a:000
+      call term_sendkeys(g:codex_bufnr, item)
+  endfor
 endfunction
 
 " Public: send visual selection to Codex with a wrapper prompt
@@ -158,8 +165,7 @@ function! CodexSendSelectionWithPrompt() range abort
     return
   endif
 
-  let l:prompt  = 'You are an AI coding assistant integrated into Vim.' . "\n"
-  let l:prompt .= 'I am working on this code snippet at ' . l:file . ' (' . l:loc . '):' . "\n"
+  let l:prompt  = 'Context: snippet at ' . l:file . ' (' . l:loc . '):' . "\n"
   " Add fenced code block for better context
   let l:prompt .= '```' . l:ft . "\n" . l:text . "\n```\n"
   let l:prompt .= 'Look for more context only if it is necessary.' . "\n"
@@ -174,23 +180,12 @@ function! CodexSendSelectionWithPrompt() range abort
   let l:orig_win = winnr()
 
   " 4. Ensure Codex terminal is running and visible (this may jump to Codex)
-  call CodexToggle()
+  call CodexToggle(l:prompt . "\r")
 
   if !exists('g:codex_bufnr') || !bufexists(g:codex_bufnr)
     echoerr "codex.vim: Codex terminal not available."
     execute l:orig_win . 'wincmd w'
     return
-  endif
-
-  " 5. Send the prompt into the Codex terminal buffer
-  if exists('*term_sendkeys')
-    " One big prompt + Enter, behaves like pasting & hitting <CR>
-    call term_sendkeys(g:codex_bufnr, l:prompt . "\r")
-  elseif exists('*chansend') && exists('*term_getchan')
-    let l:chan = term_getchan(g:codex_bufnr)
-    call chansend(l:chan, l:prompt . "\n")
-  else
-    echoerr "codex.vim: term_sendkeys/chansend not available in this Vim."
   endif
 endfunction
 
