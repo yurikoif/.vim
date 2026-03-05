@@ -44,6 +44,9 @@ let g:clang_format#code_style = "mozilla"
 let g:clang_format#enable_fallback_style = 1
 let g:plug_window = 'noautocmd vertical topleft new'
 let g:fzf_history_dir = expand('~/.vim/.fzf-history')
+let g:fzf_vim = {}
+" let g:fzf_vim.buffers_options = ['--freeze-right=1', '--delimiter=/']
+let g:fzf_vim.buffers_options = ['--keep-right']
 if has_key(g:plugs, 'vim-lsp')
     let g:lsp_diagnostics_echo_cursor = 1
     let g:lsp_diagnostics_virtual_text_enabled = 0
