@@ -88,6 +88,18 @@ fu! RsyncProj(silent_call)
     return RsyncProjRaw(a:silent_call, git_dir, g:rsync_proj_conf_list[git_dir])
 endfunction
 
+fu! RsyncProjBack(silent_call)
+    let git_dir = s:GetGitRoot()
+    if !has_key(g:rsync_proj_conf_list, git_dir)
+        echom 'not in a registered rsync project directory:' fnamemodify('%', ':p:h')
+        for [l:key, l:value] in items(g:rsync_proj_conf_list)
+            echom 'registered:' l:key '-->' l:value
+        endfor
+        return ''
+    endif
+    return RsyncProjRaw(a:silent_call, g:rsync_proj_conf_list[git_dir], git_dir)
+endfunction
+
 fu! RsyncProjAdd(remote_dir)
     let git_dir = s:GetGitRoot()
     if !isdirectory(git_dir)
@@ -130,5 +142,6 @@ au BufWritePost * if g:rsync_proj_after_save_buffer | silent call RsyncProj(1) |
 au BufWritePost * if expand('<afile>:p') ==# g:rsync_proj_conf | silent call RsyncProjConfLoad() | endif
 
 command RsyncProj call RsyncProj(0)
+command RsyncProjBack call RsyncProjBack(0)
 command -nargs=1 RsyncProjAdd call RsyncProjAdd('<args>')
 command RsyncProjToggle let g:rsync_proj_after_save_buffer = !g:rsync_proj_after_save_buffer
