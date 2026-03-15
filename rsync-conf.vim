@@ -66,7 +66,7 @@ function! s:ExitCallback(silent_call, git_dir, remote_dir, ch, status)
 endfunction
 
 fu! RsyncProjRaw(silent_call, git_dir, remote_dir)
-    let cmd = ['rsync', '--exclude=\".*.swp\"', '--exclude=\"*build*\"', '--exclude=\"*install*\"',
+    let cmd = ['rsync', '--exclude=.*.swo', '--exclude=.*.swp', '--exclude=*build*', '--exclude=*install*',
                 \ '-avxhz', a:git_dir . '/', a:remote_dir . '/']
     let job = job_start(cmd, {
                 \ 'out_mode': 'nl',
