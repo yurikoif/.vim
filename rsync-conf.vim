@@ -67,6 +67,7 @@ endfunction
 
 fu! RsyncProjRaw(silent_call, git_dir, remote_dir)
     let cmd = ['rsync', '--exclude=.*.swo', '--exclude=.*.swp', '--exclude=*build*', '--exclude=*install*',
+                \ '--exlude=PLANS.md', '--exclude=.DS_Store',
                 \ '-avxhz', a:git_dir . '/', a:remote_dir . '/']
     let job = job_start(cmd, {
                 \ 'out_mode': 'nl',
