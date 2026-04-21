@@ -43,7 +43,7 @@ function! s:sort_by_priority_preprocessor(options, matches) abort
     let l:items = []
     let l:base = get(a:options, 'base', '')
     for l:source_name in l:source_names
-        if l:source_name ==# 'buffer'
+        if l:source_name ==# 'buffer' || stridx(l:source_name, "_lsp_")
             let l:unseen = []
             let l:unseen_dict = {}
             for l:item in a:matches[l:source_name]['items']
