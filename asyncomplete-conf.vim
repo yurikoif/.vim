@@ -30,7 +30,7 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'name': 'tags',
     \ 'allowlist': ['*'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
-    \ 'priority': 2,
+    \ 'priority': -2,
     \ }))
 
 function! s:sort_by_priority_preprocessor(options, matches) abort
@@ -41,7 +41,32 @@ function! s:sort_by_priority_preprocessor(options, matches) abort
     let l:source_names = sort(keys(l:priorities), {a, b -> l:priorities[b] - l:priorities[a]})
     let l:words = {}
     let l:items = []
+    let l:base = get(a:options, 'base', '')
     for l:source_name in l:source_names
+        if l:source_name ==# 'buffer'
+            let l:unseen = []
+            let l:unseen_dict = {}
+            for l:item in a:matches[l:source_name]['items']
+                if !has_key(l:words, l:item['word'])
+                    call add(l:unseen, l:item['word'])
+                    let l:unseen_dict[l:item['word']] = l:item
+                endif
+            endfor
+            if l:base ==# ''
+                let l:matched_words = l:unseen
+            elseif exists('*matchfuzzypos') && g:asyncomplete_matchfuzzy
+                let l:matched_words = matchfuzzy(l:unseen, l:base)
+            else
+                let l:matched_words = filter(copy(l:unseen), 'stridx(v:val, l:base) == 0')
+            endif
+
+            for l:item in l:matched_words
+                call add(l:items, l:unseen_dict[l:item])
+                let l:words[l:item] = 1
+            endfor
+        continue
+        endif
+
         for l:item in a:matches[l:source_name]['items']
             if !has_key(l:words, l:item['word']) && stridx(l:item['word'], a:options['base']) == 0
                 call add(l:items, l:item)
