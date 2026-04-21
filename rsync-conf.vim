@@ -66,8 +66,10 @@ function! s:ExitCallback(silent_call, git_dir, remote_dir, ch, status)
 endfunction
 
 fu! RsyncProjRaw(silent_call, git_dir, remote_dir)
-    let cmd = ['rsync', '--exclude=\".*.swp\"', '--exclude=\"*build*\"', '--exclude=\"*install*\"',
-                \ '-avxhz', a:git_dir . '/', a:remote_dir . '/']
+    let cmd = ['rsync', '--exclude=.*.swo', '--exclude=.*.swp', '--exclude=*build*', '--exclude=*install*',
+                \ '--exclude=*logs',
+                \ '--exclude=PLANS.md', '--exclude=.DS_Store',
+                \ '-auvxhz', a:git_dir . '/', a:remote_dir . '/']
     let job = job_start(cmd, {
                 \ 'out_mode': 'nl',
                 \ 'err_mode': 'nl',
@@ -77,7 +79,7 @@ fu! RsyncProjRaw(silent_call, git_dir, remote_dir)
 endfunction
 
 fu! RsyncProj(silent_call)
-    let git_dir = substitute(system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:'),'\n','','g')
+    let git_dir = s:GetGitRoot()
     if !has_key(g:rsync_proj_conf_list, git_dir)
         echom 'not in a registered rsync project directory:' fnamemodify('%', ':p:h')
         for [l:key, l:value] in items(g:rsync_proj_conf_list)
@@ -88,8 +90,20 @@ fu! RsyncProj(silent_call)
     return RsyncProjRaw(a:silent_call, git_dir, g:rsync_proj_conf_list[git_dir])
 endfunction
 
+fu! RsyncProjBack(silent_call)
+    let git_dir = s:GetGitRoot()
+    if !has_key(g:rsync_proj_conf_list, git_dir)
+        echom 'not in a registered rsync project directory:' fnamemodify('%', ':p:h')
+        for [l:key, l:value] in items(g:rsync_proj_conf_list)
+            echom 'registered:' l:key '-->' l:value
+        endfor
+        return ''
+    endif
+    return RsyncProjRaw(a:silent_call, g:rsync_proj_conf_list[git_dir], git_dir)
+endfunction
+
 fu! RsyncProjAdd(remote_dir)
-    let git_dir = substitute(system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:'),'\n','','g')
+    let git_dir = s:GetGitRoot()
     if !isdirectory(git_dir)
         echom 'not in a git directory; abort'
         return
@@ -107,6 +121,21 @@ fu! RsyncProjAdd(remote_dir)
     let g:rsync_proj_conf_list[git_dir] = l:remote_dir
 endfunction
 
+fu! s:GetGitRoot()
+    let l:out = systemlist('git worktree list --porcelain 2>&1')
+    if v:shell_error != 0
+        let l:root = system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:')
+        return substitute(l:root, '\n', '', 'g')
+    endif
+    for l:line in l:out
+        if l:line =~# '^worktree '
+            return substitute(l:line[9:], '\n', '', 'g')
+        endif
+    endfor
+    let l:root = system('git rev-parse --show-toplevel 2>&1 | grep -v fatal:')
+    return substitute(l:root, '\n', '', 'g')
+endfunction
+
 
 au VimLeave * call RsyncProjConfSave()
 " au VimEnter * nested if argc() == 0 | call RsyncProjConfLoad() | endif
@@ -115,5 +144,6 @@ au BufWritePost * if g:rsync_proj_after_save_buffer | silent call RsyncProj(1) |
 au BufWritePost * if expand('<afile>:p') ==# g:rsync_proj_conf | silent call RsyncProjConfLoad() | endif
 
 command RsyncProj call RsyncProj(0)
+command RsyncProjBack call RsyncProjBack(0)
 command -nargs=1 RsyncProjAdd call RsyncProjAdd('<args>')
 command RsyncProjToggle let g:rsync_proj_after_save_buffer = !g:rsync_proj_after_save_buffer
