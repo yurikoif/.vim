@@ -4,15 +4,18 @@ endif
 
 let g:asyncomplete_min_chars=1
 let g:asyncomplete_auto_completeopt = 0
+let s:has_ultisnips = has('python3') && v:version >= 802
 
 " tab complete & enter snippet
 inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 inoremap <silent><expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-let g:UltiSnipsExpandTrigger="<CR>"
+if s:has_ultisnips
+    let g:UltiSnipsExpandTrigger="<CR>"
+endif
 
 " register asyncomplete.vim sources
-if has('python3')
+if s:has_ultisnips
     au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
         \ 'name': 'ultisnips',
         \ 'allowlist': ['*'],

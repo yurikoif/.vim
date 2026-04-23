@@ -1,14 +1,17 @@
 call plug#begin()
+let s:has_ultisnips = has('python3') && v:version >= 802
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
-Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+if s:has_ultisnips
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+endif
 if executable('clangd') || executable('pyright')
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
 endif
-if has('python3')
+if s:has_ultisnips
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
 endif
@@ -64,7 +67,9 @@ if has_key(g:plugs, 'vim-lsp')
 endif
 let g:VM_default_mappings = 0 " disable all key mappings except for <C-n> in multi cursor
 let g:NERDTreeChDirMode = 2 " fix NERDTree cannot close tree root
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+if s:has_ultisnips
+    let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+endif
 
 sy enable
 filetype on
