@@ -182,3 +182,6 @@ let g:qfenter_keymap = {}
 " let g:qfenter_keymap.topen = ['<Leader><Tab>']
 let g:qfenter_keymap.topen = ['<CR>', '<2-LeftMouse>'] " always open in new tab
 let g:qfenter_autoclose = 1
+
+" Open vim-fugitive's :G status window in a vertical split by default.
+cnoreabbrev <expr> G getcmdtype() ==# ':' && getcmdline() ==# 'G' ? 'vertical Git' : 'G'
